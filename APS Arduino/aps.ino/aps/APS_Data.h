@@ -36,3 +36,13 @@ typedef struct APS_Data {
 	double predCI;			//	how much carbohydrates the user will consume
 	double min_bg;			//	blood glucose target
 } APS_Data;
+
+/// <summary>
+/// Continuous Glucose Monitors need to send the appropriate data in order to be useful.
+/// Based on https://www.ncbi.nlm.nih.gov/books/NBK538967/
+/// </summary>
+typedef struct CGM_Data {
+	double Average_Glucose;	//	average glucose levels (mg/DL)
+	double TIR;				//	Time in Range; percentage time glucose levels are in target range
+	double GV;				//	Glucose Variability; measure how much glucose reading varies from mean/median glucose (mg/DL).
+} CGM_Data;
