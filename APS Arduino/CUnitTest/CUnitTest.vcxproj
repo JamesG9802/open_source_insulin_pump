@@ -127,11 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="APS_Logic.c" />
     <ClCompile Include="CUnitTest.c" />
     <ClCompile Include="Arduino.c" />
     <ClCompile Include="TestLibrary.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="APS_Data.h" />
+    <ClInclude Include="APS_Logic.h" />
     <ClInclude Include="Arduino.h" />
     <ClInclude Include="TestLibrary.h" />
     <ClInclude Include="Source.h" />

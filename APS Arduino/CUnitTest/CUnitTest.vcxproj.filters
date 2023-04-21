@@ -24,6 +24,9 @@
     <ClCompile Include="Arduino.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="APS_Logic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arduino.h">
@@ -33,6 +36,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TestLibrary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="APS_Data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="APS_Logic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

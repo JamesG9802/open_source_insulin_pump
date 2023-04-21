@@ -35,6 +35,28 @@ typedef struct APS_Data {
 	/*	User Input	*/
 	double predCI;			//	how much carbohydrates the user will consume
 	double min_bg;			//	blood glucose target
+
+	/*	Modified Vaiables	*/
+	
+	/// <summary>
+	/// Duration of Insulin activity; In oref0, this is originally supposed to come from the insulin pump.
+	/// However in our implementation, it makes more sense for the APS system to have the data.
+	/// </summary>
+	double dia;
+
+	/// <summary>
+	/// Minutes since last check.
+	/// </summary>
+	double minsAgo;
+
+	/// <summary>
+	/// The number of units of insulin currently being used
+	/// </summary>
+	double treatment_insulin;
+
+	double activityContrib;	//   activityContrib = units of treatment.insulin used in previous minute
+	double iobContrib;		//   iobContrib = units of treatment.insulin still remaining at a given point in time
+
 } APS_Data;
 
 /// <summary>
@@ -42,7 +64,8 @@ typedef struct APS_Data {
 /// Based on https://www.ncbi.nlm.nih.gov/books/NBK538967/
 /// </summary>
 typedef struct CGM_Data {
-	double Average_Glucose;	//	average glucose levels (mg/DL)
+	double Current_Glucose;	//	current glucose levels (mg/DL)
 	double TIR;				//	Time in Range; percentage time glucose levels are in target range
 	double GV;				//	Glucose Variability; measure how much glucose reading varies from mean/median glucose (mg/DL).
+	double activity;		//	current insulin activity
 } CGM_Data;

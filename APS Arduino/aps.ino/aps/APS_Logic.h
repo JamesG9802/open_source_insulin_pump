@@ -11,7 +11,7 @@ void UpdateData(APS_Data* apsData, CGM_Data cgmData);
 /// Using updated APS_Data, update predictions for BG.
 /// </summary>
 /// <param name="data"></param>
-void CalculatePrediction(APS_Data* data);
+void CalculatePrediction(APS_Data* data, CGM_Data cgmData);
 
 /// <summary>
 /// Using updated APS_Data, calculate the new target insulin rate.

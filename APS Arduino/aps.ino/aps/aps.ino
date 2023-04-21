@@ -47,7 +47,7 @@ void InitCGM()  {
 CGM_Data ReadCGMData()  {
   //  We assume the CGM exists and we are reading some data
   CGM_Data data;
-  data.Average_Glucose = 75;
+  data.Current_Glucose = 75;
   data.TIR = .50;
   data.GV = 5;
 }
@@ -58,7 +58,7 @@ void setup() {
 void loop() {
   CGM_Data cgmData = ReadCGMData();
   UpdateData(&apsData, cgmData);
-  CalculatePrediction(&apsData);
+  CalculatePrediction(&apsData, cgmData);
   CalculateInsulinRate(&apsData);
   //DeliverInsulin  - not implemented yet
   delay(1000 * 60); //  Sleep for 1 minute 
