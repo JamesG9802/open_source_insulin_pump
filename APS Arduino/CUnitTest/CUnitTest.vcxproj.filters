@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CUnitTest.c">
+    <ClCompile Include="ArduinoUnitTest.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TestLibrary.c">
@@ -27,21 +27,51 @@
     <ClCompile Include="APS_Logic.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="APSUnitTest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="APS_basal-set-temp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="APS-round-basal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TestLibrary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="APS_Data.h">
+    <ClInclude Include="APS_Logic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="APS_Logic.h">
+    <ClInclude Include="APS_Profile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="APS_Glucose_Status.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="APS_IOB_Data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="APS_Temperature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="APS_Autosens.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="APS_Meal_Data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="APS_basal-set-temp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="APS_round-basal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,0 +1,10 @@
+﻿  APS_Logic.c
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(21,15): warning C4244: 'initializing': conversion from 'long double' to 'long', possible loss of data
+  ArduinoUnitTest.c
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\ArduinoUnitTest.c(32,9): warning C4013: 'printf' undefined; assuming extern returning int
+  Generating code
+  0 of 14 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  CUnitTest.vcxproj -> C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\x64\Release\CUnitTest.exe
