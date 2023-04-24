@@ -18,15 +18,15 @@ void set_insulin_data(uint8_t insulin_rates[])
 		if(i < 24)
 		{
 			insulin_rates[i] = 20;
-			} else if (i == 30) {
+		} else if (i == 30) {
 			insulin_rates[i] = 7;
-			} else if (i == 35) {
+		} else if (i == 35) {
 			insulin_rates[i] = 7;
-			} else if (i == 40){
+		} else if (i == 40){
 			insulin_rates[i] = 7;
-			} else {
+		} else {
 			insulin_rates[i] = 0;	
-			}
+		}
 	}
 }
 
