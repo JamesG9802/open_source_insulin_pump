@@ -8,22 +8,27 @@
 #include "APS_Temperature.h"
 #include "APS_Profile.h"
 
+TempBasalFunctions APS_tempBasalFunctions;
+
 void reason(Temp* rT, const char* msg) {
-	snprintf(rT->reason, sizeof(rT->reason), "%s%s%s", rT->reason, ". ", msg);
+	snprintf((char* const)(rT->reason), (const size_t) sizeof(rT->reason), (const char* const)"%s%s%s", rT->reason, ". ", msg);
 	printf("%s", msg);
 }
 
 double getMaxSafeBasal(Profile profile) {
-	double max_daily_safety_multiplier = profile.max_daily_safety_multiplier < 0 ? 3 : profile.max_daily_safety_multiplier;
-	double current_basal_safety_multiplier = profile.current_basal_safety_multiplier < 0 ? 4 : profile.current_basal_safety_multiplier;
+	double max_daily_safety_multiplier = isnan(profile.max_daily_safety_multiplier) ? 3 : profile.max_daily_safety_multiplier;
+	double current_basal_safety_multiplier = isnan(profile.current_basal_safety_multiplier) ? 4 : profile.current_basal_safety_multiplier;
 
-	if (profile.max_basal < max_daily_safety_multiplier * profile.max_daily_basal, current_basal_safety_multiplier * profile.current_basal)
+	if (profile.max_basal < max_daily_safety_multiplier * profile.max_daily_basal && profile.max_basal < current_basal_safety_multiplier * profile.current_basal)
 		return profile.max_basal;
+	else if (max_daily_safety_multiplier * profile.max_daily_basal < profile.max_basal &&
+		max_daily_safety_multiplier * profile.max_daily_basal < current_basal_safety_multiplier * profile.current_basal)
+		return max_daily_safety_multiplier * profile.max_daily_basal < profile.max_basal;
 	else
-		return max_daily_safety_multiplier * profile.max_daily_basal, current_basal_safety_multiplier* profile.current_basal;
+		return current_basal_safety_multiplier * profile.current_basal;
 }
 Temp setTempBasal(double rate, double duration, Profile profile, Temp rT, Temp currenttemp) {
-	double maxSafeBasal = tempBasalFunctions.getMaxSafeBasal(profile);
+	double maxSafeBasal = APS_tempBasalFunctions.getMaxSafeBasal(profile);
 
 	if (rate < 0) {
 		rate = 0;
@@ -36,7 +41,7 @@ Temp setTempBasal(double rate, double duration, Profile profile, Temp rT, Temp c
 	//	NJIT - original source code had a lot more checks to see if variables were valid
 	if (currenttemp.duration > (duration - 10) && currenttemp.duration <= 120 && suggestedRate <= currenttemp.rate * 1.2 
 		&& suggestedRate >= currenttemp.rate * 0.8 && duration > 0) {
-		snprintf(rT.reason, sizeof(rT.reason), "%s %.6fm left and %.6f ~ req %.6f + U/hr no temp required", rT.reason, 
+		snprintf((char *const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%s %.6fm left and %.6f ~ req %.6f + U/hr no temp required", rT.reason,
 			currenttemp.duration, currenttemp.rate, suggestedRate);
 		return rT;
 	}
@@ -68,5 +73,6 @@ Temp setTempBasal(double rate, double duration, Profile profile, Temp rT, Temp c
 /*	Initializer to set function pointers	*/
 void APS_TempBasalFunctions_Init()
 {
-	tempBasalFunctions.getMaxSafeBasal = getMaxSafeBasal;
+	APS_tempBasalFunctions.getMaxSafeBasal = getMaxSafeBasal;
+	APS_tempBasalFunctions.setTempBasal = setTempBasal;
 }

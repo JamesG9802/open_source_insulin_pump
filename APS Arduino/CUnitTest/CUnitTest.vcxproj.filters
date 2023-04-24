@@ -36,6 +36,9 @@
     <ClCompile Include="APS-round-basal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="APSList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arduino.h">
@@ -72,6 +75,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="APSList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="APS_Predictions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,7 @@
 #pragma once
+#ifdef __cplusplus
+extern "C" {
+#endif
 typedef struct APS_Meal_Data {
 	double carbs;
 	double nsCarbs;
@@ -12,4 +15,9 @@ typedef struct APS_Meal_Data {
 	double slopeFromMinDeviation;
 	double* allDeviations;	//	array of deviations
 	unsigned char bwFound;
+	long long lastCarbTime;	//	milliseconds since unix epoch
+	const char reason[4096];
 } Meal_Data;
+#ifdef __cplusplus
+}
+#endif

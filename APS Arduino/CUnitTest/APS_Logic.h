@@ -30,9 +30,11 @@ double convert_bg(double value, Profile profile);
 //	NJIT - Not implemented right now.
 /*	double enable_smb()	*/
 
-/*	Source code includes additional variables for microBolusAllowed, reservoid_data, and currentTime */
-void determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data iob_data,
-	Profile profile, Autosens autosens_data, Meal_Data meal_data, TempBasalFunctions tempBasalFunctions);
+/*	Source code includes additional variables for microBolusAllowed, reservoid_data, and currentTime 
+	Also an addition variable for length of iob_data array
+*/
+Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* iob_data,
+	Profile profile, Autosens autosens_data, Meal_Data meal_data, TempBasalFunctions tempBasalFunctions, long iobLength);
 #ifdef __cplusplus
 }
 #endif

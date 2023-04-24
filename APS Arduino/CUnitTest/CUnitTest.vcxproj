@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="APS-round-basal.c" />
+    <ClCompile Include="APSList.c" />
     <ClCompile Include="APSUnitTest.c" />
     <ClCompile Include="APS_basal-set-temp.c" />
     <ClCompile Include="APS_Logic.c" />
@@ -136,12 +137,14 @@
     <ClCompile Include="TestLibrary.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="APSList.h" />
     <ClInclude Include="APS_Autosens.h" />
     <ClInclude Include="APS_basal-set-temp.h" />
     <ClInclude Include="APS_Glucose_Status.h" />
     <ClInclude Include="APS_IOB_Data.h" />
     <ClInclude Include="APS_Logic.h" />
     <ClInclude Include="APS_Meal_Data.h" />
+    <ClInclude Include="APS_Predictions.h" />
     <ClInclude Include="APS_Profile.h" />
     <ClInclude Include="APS_round-basal.h" />
     <ClInclude Include="APS_Temperature.h" />
