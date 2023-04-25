@@ -1,18 +1,47 @@
 ﻿  APS_UnitTest.c
 C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(51,22): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(64,18): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(65,20): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(66,19): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(126,24): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(225,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(267,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(298,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(412,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(435,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(458,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(59,18): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(60,20): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(61,19): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(115,24): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(241,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(284,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(323,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(461,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(488,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(515,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(694,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(721,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(790,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(817,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(844,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(932,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(952,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1028,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1182,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1186,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1186,11): message : placeholders and their parameters expect 2 variadic arguments, but 1 were provided
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1186,11): message : the missing variadic argument 2 is required by format string '%.6lf'
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1191,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1191,11): message : placeholders and their parameters expect 2 variadic arguments, but 1 were provided
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1191,11): message : the missing variadic argument 2 is required by format string '%.6lf'
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1201,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1210,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1210,11): message : placeholders and their parameters expect 2 variadic arguments, but 1 were provided
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1210,11): message : the missing variadic argument 2 is required by format string '%.6lf'
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1215,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1215,11): message : placeholders and their parameters expect 2 variadic arguments, but 1 were provided
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1215,11): message : the missing variadic argument 2 is required by format string '%.6lf'
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1225,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1234,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1234,11): message : placeholders and their parameters expect 2 variadic arguments, but 1 were provided
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1234,11): message : the missing variadic argument 2 is required by format string '%.6lf'
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1239,11): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1239,11): message : placeholders and their parameters expect 2 variadic arguments, but 1 were provided
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1239,11): message : the missing variadic argument 2 is required by format string '%.6lf'
   Generating code
-  1 of 36 functions ( 2.8%) were compiled, the rest were copied from previous compilation.
+  4 of 36 functions (11.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    3 functions had inline decision re-evaluated but remain unchanged
+    5 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   APSUnitTest.vcxproj -> C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\APSUnitTest\x64\Release\APSUnitTest.exe

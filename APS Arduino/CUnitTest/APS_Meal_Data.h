@@ -17,6 +17,7 @@ typedef struct APS_Meal_Data {
 	unsigned char bwFound;
 	long long lastCarbTime;	//	milliseconds since unix epoch
 	const char reason[4096];
+	double boluses;
 } Meal_Data;
 #ifdef __cplusplus
 }

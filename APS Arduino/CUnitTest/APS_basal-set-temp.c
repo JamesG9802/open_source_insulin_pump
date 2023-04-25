@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 #include "APS_basal-set-temp.h"
 #include "APS_round-basal.h"
@@ -18,14 +19,8 @@ void reason(Temp* rT, const char* msg) {
 double getMaxSafeBasal(Profile profile) {
 	double max_daily_safety_multiplier = isnan(profile.max_daily_safety_multiplier) ? 3 : profile.max_daily_safety_multiplier;
 	double current_basal_safety_multiplier = isnan(profile.current_basal_safety_multiplier) ? 4 : profile.current_basal_safety_multiplier;
-
-	if (profile.max_basal < max_daily_safety_multiplier * profile.max_daily_basal && profile.max_basal < current_basal_safety_multiplier * profile.current_basal)
-		return profile.max_basal;
-	else if (max_daily_safety_multiplier * profile.max_daily_basal < profile.max_basal &&
-		max_daily_safety_multiplier * profile.max_daily_basal < current_basal_safety_multiplier * profile.current_basal)
-		return max_daily_safety_multiplier * profile.max_daily_basal < profile.max_basal;
-	else
-		return current_basal_safety_multiplier * profile.current_basal;
+	printf("GetMaxSafeBasal %.6lf %.6lf %.6lf %.6lf\n", profile.max_basal, max_daily_safety_multiplier, profile.max_daily_basal, current_basal_safety_multiplier);
+	return min(profile.max_basal, min(max_daily_safety_multiplier * profile.max_daily_basal, current_basal_safety_multiplier * profile.current_basal));
 }
 Temp setTempBasal(double rate, double duration, Profile profile, Temp rT, Temp currenttemp) {
 	double maxSafeBasal = APS_tempBasalFunctions.getMaxSafeBasal(profile);

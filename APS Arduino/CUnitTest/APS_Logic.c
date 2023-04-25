@@ -17,19 +17,131 @@
 
 #include "APS_Logic.h"
 
-/*	Implementation of oref0 from https://github.com/openaps/oref0/blob/master/lib/determine-basal/determine-basal.js	*/
-
-
 void InitAPS() {
 	APS_TempBasalFunctions_Init();
 }
+Profile Create_Profile() {
+	Profile profile;
+	memset(profile.out_units, 0, sizeof(profile.out_units));	// no listed default (nld)
+	profile.max_daily_safety_multiplier = 3;
+	profile.current_basal_safety_multiplier = 4;
+	profile.max_basal = NAN;	//	nld
+	profile.max_daily_basal = NAN;	//	nld
+	profile.current_basal = NAN;	//	nld
+	memset(profile.model, 0, sizeof(profile.model));	//	nld
+	profile.skip_neutral_temps = 0;	// default false
+	profile.max_iob = 0;	//	default 0
+	profile.min_bg = NAN;	//	nld
+	profile.max_bg = NAN;	//	nld
+	profile.exercise_mode = 0;	//	default false
+	profile.high_temptarget_raises_sensitivity = 0;	//	default false
+	profile.low_temptarget_lowers_sensitivity = 0;	//	default false
+	profile.half_basal_exercise_target = 160;
+	profile.temptargetSet = 0;	//	nld
+	profile.autosens_max = 1.2;
+	profile.sensitivity_raises_target = 0;	//	nld but implied false
+	profile.resistance_lowers_target = 0;
+	profile.noisyCGMTargetMultiplier = 1.3;
+	profile.maxRaw = 0;	//	nld
+	profile.sens = NAN;	//	nld
+	profile.carb_ratio = NAN; //	nld
+	profile.remainingCarbsCap = 90;
+	profile.remainingCarbsFraction = 1;
+	profile.carbsReqThreshold = 1;
+	profile.dia = NAN;	//	nld
+	memset(profile.type, 0, sizeof(profile.type));	//	nld
+	return profile;
+}
+Glucose_Status Create_GlucoseStatus() {
+	Glucose_Status status;
+	status.delta = NAN;	//	no listed default (nld)
+	status.glucose = NAN;	//	nld
+	status.long_avgdelta = NAN;	//	nld
+	status.short_avgdelta = NAN;	//	nld
+	status.date = time(NULL);	//	nld	 but setting it to current time
+	//status.date = 0;
+	status.noise = 0;	//	nld
+	memset(status.device, 0, sizeof(status.device));	// nld
+	status.last_cal = NAN;	//	nld
+	return status;
+}
+Temp Create_Temp() {
+	Temp temp;
+	temp.duration = NAN;	//	no listed default (nld)
+	temp.rate = NAN;	//	nld
+	memset(temp.temp, 0, sizeof(temp.temp));
+	memset(temp.reason, 0, sizeof(temp.reason));
+	memset(temp.error, 0, sizeof(temp.error));
+	temp.deliverAt = 0;	//	nld
+	temp.date = 0;	//	nld
+	temp.bg = NAN;	//	nld
+	temp.tick = NAN;	//	nld
+	temp.eventualBG = NAN;	//	nld
+	temp.insulinReq = 0;
+	temp.sensitivityRatio = NAN;	//	nld
+	temp.predBGs.IOB = NULL;
+	temp.predBGs.COB = NULL;
+	temp.COB = NAN;	//	nld
+	temp.IOB = NAN;	//	nld
+	temp.BGI = NAN;	//	nld
+	temp.deviation = NAN;	//	nld
+	temp.ISF = NAN;	//	nld
+	temp.CR = NAN;	//	nld
+	temp.target_bg = NAN;	//	nld
+	temp.carbsReq = NAN;	//	nld
+	return temp;
+}
+IOB_Data Create_IOB_Data() {
+	IOB_Data iob_data;
+	iob_data.iob = NAN;	//	no listed default (nld)
+	iob_data.activity = NAN;	//	nld
+	iob_data.bolussnooze = NAN;	//	nld
+	Temp temp = Create_Temp();	//	nld
+	memmove(&(iob_data.lastTemp), &temp, sizeof(Temp));
+	iob_data.iobWithZeroTemp = NULL;
+	iob_data.lastBolusTime = 0;	//	nld
+	iob_data.basaliob = NAN;	//	nld
+	iob_data.netbasalinsulin = NAN;	//	nld
+	iob_data.hightempinsulin = NAN;	//	nld
+	return iob_data;
+}
+Autosens Create_Autosens() {
+	Autosens autosens;
+	autosens.ratio = 1;
+	return autosens;
+}
+Meal_Data Create_MealData() {
+	Meal_Data mealData;
+	mealData.carbs = NAN;	//	no listed default (nld)
+	mealData.nsCarbs = NAN;	//	nld
+	mealData.bwCarbs = NAN;	//	nld
+	mealData.journalCarbs = NAN;	//	nld
+	mealData.mealCOB = NAN;	//	nld
+	mealData.currentDeviation = NAN;	//	nld
+	mealData.maxDeviation = NAN;	//	nld
+	mealData.minDeviation = NAN;	//	nld
+	mealData.slopeFromMaxDeviation = NAN;	//	nld
+	mealData.slopeFromMinDeviation = NAN;	//	nld
+	mealData.allDeviations = NULL;	//	nld
+	mealData.bwFound = 0;	//	nld
+	mealData.lastCarbTime = 0;	//	nld
+	memset(mealData.reason, 0, sizeof(mealData.reason));
+	mealData.boluses = NAN;	//	nld
+	return mealData;
+}
+
+
+/*	Implementation of oref0 from https://github.com/openaps/oref0/blob/master/lib/determine-basal/determine-basal.js	*/
 
 // Define various functions used later on, in the main function determine_basal() below
 
 // Rounds value to 'digits' decimal places
 double APS_round(double value, unsigned long digits)
 {
-	long scale = powl(10, digits);
+	//	Note that Javascript breaks ties with round to positive infinity while C's default round breaks ties with round to even.
+	long long scale = powl(10, digits);
+	if(value < 0 && (value - (long)(value) == -0.5))
+		return roundl(value * scale + .01) / scale;
 	return roundl(value * scale) / scale;
 }
 
@@ -671,6 +783,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		(const char* const)"COB: %.6lf, Dev: %.6lf, BGI: %.6lf, ISF: %.6lf, CR: %.6lf, minPredBG %.6lf, minGuardBG %.6lf, IOpredBG %.6lf"
 		, rT.COB, rT.deviation, rT.BGI, rT.ISF, rT.CR, convert_bg(minPredBG, profile), 
 		convert_bg(minGuardBG, profile), convert_bg(lastIOBpredBG, profile));
+	printf("\n\n:(\n");
 	if (lastCOBpredBG > 0) {
 		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
 			(const char* const)"%s, COBpredBG %.6lf"
@@ -722,7 +835,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	}
 	// Calculate carbsReq (carbs required to avoid a hypo)
 	printf("BG projected to remain above %.6lf ", convert_bg(min_bg, profile));
-	printf("for %.6lf minutes", minutesAboveMinBG);
+	printf("for %.6lf minutes\n", minutesAboveMinBG);
 	if (minutesAboveThreshold < 240 || minutesAboveMinBG < 60) {
 		printf("BG projected to remain above %.6lf for ", convert_bg(threshold, profile));
 		printf("%.6lf minutes\n",minutesAboveThreshold);
@@ -735,9 +848,13 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	// don't count the last 25% of COB against carbsReq
 	double COBforCarbsReq = max(0, meal_data.mealCOB - 0.25 * meal_data.carbs);
 	double carbsReq = (bgUndershoot - zeroTempEffect) / csf - COBforCarbsReq;
-	zeroTempEffect = round(zeroTempEffect);
-	carbsReq = round(carbsReq);
-	printf("naive_eventualBG");
+	printf("naive_eventualBG: %.6lf bgUndershoot: %.6lf zeroTempDuration: %.6lf zeroTempEffect: %.6lf carbsReq: %.6lf\n",
+		naive_eventualBG, bgUndershoot, zeroTempDuration, zeroTempEffect, carbsReq);
+	printf("Check carbsReq %.6lf\n", carbsReq);
+	zeroTempEffect = APS_round(zeroTempEffect, 0);
+	carbsReq = APS_round(carbsReq, 0);
+	printf("naive_eventualBG: %.6lf bgUndershoot: %.6lf zeroTempDuration: %.6lf zeroTempEffect: %.6lf carbsReq: %.6lf\n", 
+		naive_eventualBG, bgUndershoot, zeroTempDuration, zeroTempEffect, carbsReq);
 	if (strcmp(meal_data.reason,"Could not parse clock data") == 0) {
 		printf("carbsReq unknown: Could not parse clock data");
 	}
@@ -1044,7 +1161,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		/*	NJIT - no microbolusing */
 
 		double maxSafeBasal = tempBasalFunctions.getMaxSafeBasal(profile);
-
+		printf("Max safe basal %.6lf\n", maxSafeBasal);
 		if (rate > maxSafeBasal) {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
 				(const char* const)"%sadj. req. rate: %.6lf to maxSafeBasal: %.6lf, ",

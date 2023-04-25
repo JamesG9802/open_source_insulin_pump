@@ -11,6 +11,9 @@ typedef struct APS_IOB_DATA {
 	Temp lastTemp;
 	struct APS_IOB_DATA* iobWithZeroTemp;
 	long long lastBolusTime;	//	milliseconds since unix epoch
+	double basaliob;
+	double netbasalinsulin;
+	double hightempinsulin;
 } IOB_Data;
 #ifdef __cplusplus
 }
