@@ -41,7 +41,7 @@ Temp setTempBasal(double rate, double duration, Profile profile, Temp rT, Temp c
 	//	NJIT - original source code had a lot more checks to see if variables were valid
 	if (currenttemp.duration > (duration - 10) && currenttemp.duration <= 120 && suggestedRate <= currenttemp.rate * 1.2 
 		&& suggestedRate >= currenttemp.rate * 0.8 && duration > 0) {
-		snprintf((char *const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%s %.6fm left and %.6f ~ req %.6f + U/hr no temp required", rT.reason,
+		snprintf((char *const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%s %.6lfm left and %.6lf ~ req %.6lf + U/hr no temp required", rT.reason,
 			currenttemp.duration, currenttemp.rate, suggestedRate);
 		return rT;
 	}
@@ -58,7 +58,7 @@ Temp setTempBasal(double rate, double duration, Profile profile, Temp rT, Temp c
 			}
 		} else {
 			char stringBuffer[128];
-			snprintf(stringBuffer, sizeof(stringBuffer), "Setting neutral temp basal of %.6fU/hr", profile.current_basal);
+			snprintf(stringBuffer, sizeof(stringBuffer), "Setting neutral temp basal of %.6lfU/hr", profile.current_basal);
 			reason(&rT, stringBuffer);
 			rT.duration = duration;
 			rT.rate = suggestedRate;

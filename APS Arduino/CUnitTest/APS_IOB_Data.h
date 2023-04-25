@@ -7,7 +7,7 @@ extern "C" {
 typedef struct APS_IOB_DATA {
 	double iob;					//	invalid if NAN
 	double activity;			//	invalid if NAN
-	unsigned char bolussnooze;
+	double bolussnooze;
 	Temp lastTemp;
 	struct APS_IOB_DATA* iobWithZeroTemp;
 	long long lastBolusTime;	//	milliseconds since unix epoch

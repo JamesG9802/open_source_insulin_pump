@@ -1,6 +1,6 @@
 /*  APS Button Pins for Arduino NANO 33 IoT */
 
-#include "APS_Logic.h"
+#include "Arduino_Logic.h"
 
 #define SERIAL_TRANSMITTER 0
 #define SERIAL_RECEIVER 1
@@ -35,14 +35,17 @@ void PressButton(unsigned char buttonID)  {
 
 /*  Initialize communication between Arduino and Continuous Glucose Monitor (CGM).  */
 void InitCGM()  {
-  Serial.begin(9600);
+  // Serial.begin(9600);
 }
 void setup() {
-  InitInsulinPump();
-  InitCGM();
+  //InitInsulinPump();
+  //InitCGM();
+  pinMode(13, OUTPUT);
 }
 void loop() {
-  //DeliverInsulin  - not implemented yet
-  delay(1000 * 60); //  Sleep for 1 minute 
+  digitalWrite(13, HIGH);   
+  delay(50);              
+  digitalWrite(13, LOW);   
+  delay(50); 
 }
 

@@ -654,7 +654,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	rT.BGI = convert_bg(bgi, profile);
 	rT.deviation = convert_bg(deviation, profile);
 	rT.ISF = convert_bg(sens, profile);
-	rT.CR = round(profile.carb_ratio, 2);
+	rT.CR = APS_round(profile.carb_ratio, 2);
 	rT.target_bg = convert_bg(target_bg, profile);
 
 	snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
@@ -714,7 +714,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	// Calculate carbsReq (carbs required to avoid a hypo)
 	perror("BG projected to remain above");
 	if (minutesAboveThreshold < 240 || minutesAboveMinBG < 60) {
-		perror("BG projected to remain above", convert_bg(threshold, profile), "for", minutesAboveThreshold, "minutes");
+		perror("BG projected to remain above minutes");
 	}
 	// include at least minutesAboveThreshold worth of zero temps in calculating carbsReq
 	// always include at least 30m worth of zero temp (carbs to 80, low temp up to target)

@@ -1,0 +1,18 @@
+﻿  APS_UnitTest.c
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(51,22): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(64,18): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(65,20): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(66,19): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(126,24): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(225,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(267,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(298,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(412,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(435,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(458,28): warning C4090: 'function': different 'const' qualifiers
+  Generating code
+  1 of 36 functions ( 2.8%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  APSUnitTest.vcxproj -> C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\APSUnitTest\x64\Release\APSUnitTest.exe

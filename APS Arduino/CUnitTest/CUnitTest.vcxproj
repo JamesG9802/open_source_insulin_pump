@@ -129,7 +129,6 @@
   <ItemGroup>
     <ClCompile Include="APS-round-basal.c" />
     <ClCompile Include="APSList.c" />
-    <ClCompile Include="APSUnitTest.c" />
     <ClCompile Include="APS_basal-set-temp.c" />
     <ClCompile Include="APS_Logic.c" />
     <ClCompile Include="ArduinoUnitTest.c" />

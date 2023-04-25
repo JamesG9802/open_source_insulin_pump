@@ -19,6 +19,11 @@
 
 /*	Implementation of oref0 from https://github.com/openaps/oref0/blob/master/lib/determine-basal/determine-basal.js	*/
 
+
+void InitAPS() {
+	APS_TempBasalFunctions_Init();
+}
+
 // Define various functions used later on, in the main function determine_basal() below
 
 // Rounds value to 'digits' decimal places
@@ -54,7 +59,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	Profile profile, Autosens autosens_data, Meal_Data meal_data, TempBasalFunctions tempBasalFunctions, long iobLength)
 {
 	// Set variables required for evaluating error conditions
-	Temp rT;
+	Temp rT = Create_Temp();
 
 	time_t deliverAt = time(NULL);
 	if (isnan(profile.current_basal))
@@ -100,8 +105,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	double tooflat = 0;
 	if (bg > 60 && glucose_status.delta == 0 && glucose_status.short_avgdelta > -1 && glucose_status.short_avgdelta < 1 && glucose_status.long_avgdelta > -1 && glucose_status.long_avgdelta < 1) {
 		if (strcmp(glucose_status.device, "fakecgm") == 0) {
-			perror("CGM data is unchanged\n");
-			perror("Simulator mode detected\n");
+			printf("CGM data is unchanged\n");
+			printf("Simulator mode detected\n");
 		}
 		else {
 			tooflat = 1;
@@ -109,8 +114,11 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	}
 
 	if (minAgo > 12 || minAgo < -5) { // Dexcom data is too old, or way in the future
+		const char timeString[512];
+		ctime_s(timeString, sizeof(timeString), &bgTime);
 		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-			(const char* const)"If current system time is correct, then BG data is too old.");
+			(const char* const)"If current system time is correct, then BG data is too old. The last BG data was read %.6lfm ago at %s", 
+			minAgo, timeString);
 		// if BG is too old/noisy, or is changing less than 1 mg/dL/5m for 45m, cancel any high temps and shorten any long zero temps
 	}
 	else if (tooflat) {
@@ -120,7 +128,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		}
 		else {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"CGM data is unchanged (%ld+%.6f) for 5m w/ %.6f mg/d: ~15 change & %.6f mg/dL ~ 45m change"
+				(const char* const)"CGM data is unchanged (%ld+%.6lf) for 5m w/ %.6lf mg/d: ~15 change & %.6lf mg/dL ~ 45m change"
 				, bg, glucose_status.delta, glucose_status.short_avgdelta, glucose_status.long_avgdelta);
 		}
 	}
@@ -128,7 +136,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	if (bg <= 10 || bg == 38 || noise >= 3 || minAgo > 12 || minAgo < -5 || tooflat) {
 		if (currenttemp.rate > basal) { // high temp is running
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s. Replacing high temp basal of %.6f with neutral temp of %ld"
+				(const char* const)"%s. Replacing high temp basal of %.6lf with neutral temp of %ld"
 				, rT.reason, currenttemp.rate, basal);
 			rT.deliverAt = deliverAt;
 			snprintf((char* const)(rT.temp), (const size_t)sizeof(rT.temp),(const char* const)"absolute");
@@ -140,7 +148,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		}
 		else if (currenttemp.rate == 0 && currenttemp.duration > 30) { //shorten long zero temps to 30m
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s. Shortening %.6fm long zero temp to 30m. "
+				(const char* const)"%s. Shortening %.6lfm long zero temp to 30m. "
 				, rT.reason, currenttemp.duration);
 			rT.deliverAt = deliverAt;
 			snprintf((char* const)(rT.temp), (const size_t)sizeof(rT.temp), (const char* const)"absolute");
@@ -152,7 +160,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		}
 		else { //do nothing.
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s. Temp %.6f <= current basal %.6fU/hr; doing nothing. "
+				(const char* const)"%s. Temp %.6lf <= current basal %.6lfU/hr; doing nothing. "
 				, rT.reason, currenttemp.rate, basal);
 			return rT;
 		}
@@ -214,20 +222,20 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		// limit sensitivityRatio to profile.autosens_max (1.2x by default)
 		sensitivityRatio = min(sensitivityRatio, profile.autosens_max);
 		sensitivityRatio = APS_round(sensitivityRatio, 2);
-		perror("Sensitivity ratio set to ");
+		printf("Sensitivity ratio set to ");
 	}
 	else if(!isnan(autosens_data.ratio)) {
 		sensitivityRatio = autosens_data.ratio;
-		perror("Autosens ratio changed");
+		printf("Autosens ratio changed");
 	}
 	if (sensitivityRatio) {
 		basal = profile.current_basal * sensitivityRatio;
 		basal = round_basal(basal, profile);
 		if (basal != profile_current_basal) {
-			perror("Adjusting basal\n");
+			printf("Adjusting basal\n");
 		}
 		else {
-			perror("Basal unchanged\n");
+			printf("Basal unchanged\n");
 		}
 	}
 	// Conversely, adjust BG target based on autosens ratio if no temp target is running
@@ -246,10 +254,10 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 			// don't allow target_bg below 80
 			new_target_bg = max(80, new_target_bg);
 			if (target_bg == new_target_bg) {
-				perror("target_bg unchanged\n");
+				printf("target_bg unchanged\n");
 			}
 			else {
-				perror("target_bg changed\n");
+				printf("target_bg changed\n");
 			}
 			target_bg = new_target_bg;
 		}
@@ -264,7 +272,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		double adjustedMinBG = APS_round(min(200, min_bg * noisyCGMTargetMultiplier), 0);
 		double adjustedTargetBG = APS_round(min(200, target_bg * noisyCGMTargetMultiplier), 0);
 		double adjustedMaxBG = APS_round(min(200, max_bg * noisyCGMTargetMultiplier), 0);
-		perror("Raising target_bg for noisy / raw CGM data");
+		printf("Raising target_bg for noisy / raw CGM data");
 		min_bg = adjustedMinBG;
 		target_bg = adjustedTargetBG;
 		max_bg = adjustedMaxBG;
@@ -285,13 +293,14 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		sens = profile.sens / sensitivityRatio;
 		sens = APS_round(sens, 1);
 		if (sens != profile_sens) {
-			perror("ISF changed\n");
+			printf("ISF changed\n");
 		}
 		else {
-			perror("ISF unchanged\n");
+			printf("ISF unchanged\n");
 		}
 		//process.stderr.write(" (autosens ratio "+sensitivityRatio+")");
 	}
+	printf("CR: ");
 	if (iob_data == NULL) {
 		snprintf((char* const)(rT.error), (const size_t)sizeof(rT.error), (const char* const)"Error: iob_data undefined. ");
 		return rT;
@@ -299,11 +308,10 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 
 	IOB_Data* iobArray = iob_data;
 
-	if (iobLength <= 1 || isnan(iob_data[0].activity) || isnan(iob_data[0].iob)) {
+	if (iobLength < 1 || isnan(iob_data[0].activity) || isnan(iob_data[0].iob)) {
 		snprintf((char* const)(rT.error), (const size_t)sizeof(rT.error), (const char* const)"Error: iob_data missing some property. ");
 		return rT;
 	}
-
 	// Compare currenttemp to iob_data.lastTemp and cancel temp if they don't match, as a safety check
 	// This should occur after checking that we're not in one of the CGM-data-related error conditions handled above,
 	// and before returning (doing nothing) below if eventualBG is undefined.
@@ -316,7 +324,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	}
 	
 	double tempModulus = fmod((lastTempAge + currenttemp.duration), 30);
-	perror("currenttemp lastTempAge tempModulus\n");
+	printf("currenttemp lastTempAge tempModulus\n");
 	snprintf((char* const)(rT.temp), (const size_t)sizeof(rT.temp), (const char* const)"absolute");
 	rT.deliverAt = deliverAt;
 	/*	microBolus is neber allowed in this implementation
@@ -332,7 +340,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		double lastTempEnded = lastTempAge - iob_data[0].lastTemp.duration;
 			if (lastTempEnded > 5 && lastTempAge > 10) {
 				snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), 
-					(const char* const)"Warning: currenttemp running but lastTemp from pumphistory ended %.6fm ago; canceling temp",
+					(const char* const)"Warning: currenttemp running but lastTemp from pumphistory ended %.6lfm ago; canceling temp",
 					lastTempEnded);
 				//console.error(currenttemp, round(iob_data.lastTemp,1), round(lastTempAge,1));
 				return tempBasalFunctions.setTempBasal(0, 0, profile, rT, currenttemp);
@@ -415,13 +423,13 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	// autotuned CR is still in effect even when basals and ISF are being adjusted by TT or autosens
 	// this avoids overdosing insulin for large meals when low temp targets are active
 	double csf = sens / profile.carb_ratio;
-	perror("profile.sens sens CSF\n");
+	printf("profile.sens sens CSF\n");
 
 	double maxCarbAbsorptionRate = 30; // g/h; maximum rate to assume carbs will absorb if no CI observed
 	// limit Carb Impact to maxCarbAbsorptionRate * csf in mg/dL per 5m
 	double maxCI = APS_round(maxCarbAbsorptionRate * csf * 5 / 60, 1);
 	if (ci > maxCI) {
-		perror("Limiting carb impact\n");
+		printf("Limiting carb impact\n");
 		ci = maxCI;
 	}
 	double remainingCATimeMin = 3; // h; minimum duration of expected not-yet-observed carb absorption
@@ -446,7 +454,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		remainingCATime = remainingCATimeMin + 1.5 * lastCarbAge / 60;
 		remainingCATime = APS_round(remainingCATime, 1);
 		//console.error(fractionCOBAbsorbed, remainingCATimeAdjustment, remainingCATime)
-		perror("Last carbs");
+		printf("Last carbs");
 	}
 	// calculate the number of carbs absorbed over remainingCATime hours at current CI
 		// CI (mg/dL/5m) * (5m)/5 (m) * 60 (min/hr) * 4 (h) / 2 (linear decay factor) = total carb impact (mg/dL)
@@ -487,7 +495,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		cid = min(remainingCATime * 60 / 5 / 2, max(0, meal_data.mealCOB * csf / ci));
 	}
 	// duration (hours) = duration (5m) * 5 / 60 * 2 (to account for linear decay)
-	perror("Carb Impact mg/dL per 5m; CI Duration hours; remaining CI ( peak): mg/dL per 5m\n");
+	printf("Carb Impact mg/dL per 5m; CI Duration hours; remaining CI ( peak): mg/dL per 5m\n");
 
 	double minIOBPredBG = 999;
 	double minCOBPredBG = 999;
@@ -515,14 +523,15 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 
 	/*	No such thing as try/catch in C	*/
 	double COBpredBG;
-	for (int i = 0; i < iobLength; i++)
+	/*	NJIT - Ok so they treat the iob_data as an array, but if its a single element they treat it as a single element and not an array */
+	for (int i = 0; i < iobLength && iobLength != 1; i++)
 	{
 		IOB_Data iobTick = iob_data[i];
 		double predBGI = APS_round((-iobTick.activity * sens * 5), 2);
 		// for IOBpredBGs, predicted deviation impact drops linearly from current deviation down to zero
 		// over 60 minutes (data points every 5m)
 		double predDev = ci * (1 - min(1, IOBpredBGs->length / (60 / 5)));
-		IOBpredBG = *((double*)IOBpredBGs->elements[IOBpredBGs->length - 1]) + predBGI + predDev;
+		IOBpredBG = *((double*)(IOBpredBGs->elements[IOBpredBGs->length - 1])) + predBGI + predDev;
 		// calculate predBGs with long zero temp without deviations
 		// for COBpredBGs, predicted carb impact drops linearly from current carb impact down to zero
 			// eventually accounting for all carbs (if they can be absorbed over DIA)
@@ -574,6 +583,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		else free(List_Pop(IOBpredBGs)); 	
 	}
 	rT.predBGs.IOB = IOBpredBGs;
+	lastIOBpredBG = APS_round(*((double*)((List*)IOBpredBGs)->elements[((List*)IOBpredBGs)->length - 1]), 0);
 	if (meal_data.mealCOB > 0 && (ci > 0 || remainingCIpeak > 0)) {
 		for (int i = 0; i < COBpredBGs->length; i++) {
 			*((double*)COBpredBGs->elements[i]) = APS_round(min(401, max(39, *((double*)COBpredBGs->elements[i]))), 0);
@@ -654,16 +664,16 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	rT.BGI = convert_bg(bgi, profile);
 	rT.deviation = convert_bg(deviation, profile);
 	rT.ISF = convert_bg(sens, profile);
-	rT.CR = round(profile.carb_ratio, 2);
+	rT.CR = APS_round(profile.carb_ratio, 2);
 	rT.target_bg = convert_bg(target_bg, profile);
 
 	snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-		(const char* const)"COB: %.6f, Dev: %.6f, BGI: %.6f, ISF: %.6f, CR: %.6f, minPredBG %.6f, minGuardBG %.6f, IOpredBG %.6f"
+		(const char* const)"COB: %.6lf, Dev: %.6lf, BGI: %.6lf, ISF: %.6lf, CR: %.6lf, minPredBG %.6lf, minGuardBG %.6lf, IOpredBG %.6lf"
 		, rT.COB, rT.deviation, rT.BGI, rT.ISF, rT.CR, convert_bg(minPredBG, profile), 
 		convert_bg(minGuardBG, profile), convert_bg(lastIOBpredBG, profile));
 	if (lastCOBpredBG > 0) {
 		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-			(const char* const)"%s, COBpredBG %.6f"
+			(const char* const)"%s, COBpredBG %.6lf"
 			,rT.reason, convert_bg(lastCOBpredBG, profile));
 	}
 	snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%s; ", rT.reason);
@@ -681,14 +691,14 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	if (meal_data.mealCOB > 0 && (ci > 0 || remainingCIpeak > 0)) {
 		for (int i = 0; i < COBpredBGs->length; i++) {
 			//console.error(COBpredBGs[i], min_bg);
-			if (*((double*)COBpredBGs->elements[i]) < min_bg) {
+			if (*((double*)(COBpredBGs->elements[i])) < min_bg) {
 				minutesAboveMinBG = 5 * i;
 				break;
 			}
 		}
 		for (int i = 0; i < COBpredBGs->length; i++) {
 			//console.error(COBpredBGs[i], threshold);
-			if (*((double*)COBpredBGs->elements[i]) < threshold) {
+			if (*((double*)(COBpredBGs->elements[i])) < threshold) {
 				minutesAboveThreshold = 5 * i;
 				break;
 			}
@@ -697,24 +707,25 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	else {
 		for (int i = 0; i < IOBpredBGs->length; i++) {
 			//console.error(IOBpredBGs[i], min_bg);
-			if (*((double*)IOBpredBGs->elements[i]) < min_bg) {
+			if (*((double*)(IOBpredBGs->elements[i])) < min_bg) {
 				minutesAboveMinBG = 5 * i;
 				break;
 			}
 		}
 		for (int i = 0; i < IOBpredBGs->length; i++) {
 			//console.error(IOBpredBGs[i], threshold);
-			if (*((double*)IOBpredBGs->elements[i]) < threshold) {
+			if (*((double*)(IOBpredBGs->elements[i])) < threshold) {
 				minutesAboveThreshold = 5 * i;
 				break;
 			}
 		}
 	}
-
 	// Calculate carbsReq (carbs required to avoid a hypo)
-	perror("BG projected to remain above");
+	printf("BG projected to remain above %.6lf ", convert_bg(min_bg, profile));
+	printf("for %.6lf minutes", minutesAboveMinBG);
 	if (minutesAboveThreshold < 240 || minutesAboveMinBG < 60) {
-		perror("BG projected to remain above", convert_bg(threshold, profile), "for", minutesAboveThreshold, "minutes");
+		printf("BG projected to remain above %.6lf for ", convert_bg(threshold, profile));
+		printf("%.6lf minutes\n",minutesAboveThreshold);
 	}
 	// include at least minutesAboveThreshold worth of zero temps in calculating carbsReq
 	// always include at least 30m worth of zero temp (carbs to 80, low temp up to target)
@@ -726,13 +737,13 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	double carbsReq = (bgUndershoot - zeroTempEffect) / csf - COBforCarbsReq;
 	zeroTempEffect = round(zeroTempEffect);
 	carbsReq = round(carbsReq);
-	perror("naive_eventualBG");
+	printf("naive_eventualBG");
 	if (strcmp(meal_data.reason,"Could not parse clock data") == 0) {
-		perror("carbsReq unknown: Could not parse clock data");
+		printf("carbsReq unknown: Could not parse clock data");
 	}
 	else if (carbsReq >= profile.carbsReqThreshold && minutesAboveThreshold <= 45) {
 		rT.carbsReq = carbsReq;
-		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%s add'l carbs req w/in %.6fm; ", 
+		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%s add'l carbs req w/in %.6lfm; ", 
 			rT.reason, minutesAboveThreshold);
 	}
 
@@ -743,14 +754,14 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 
 	// don't low glucose suspend if IOB is already super negative and BG is rising faster than predicted
 	if (bg < threshold && iob_data[0].iob < -profile.current_basal * 20 / 60 && minDelta > 0 && minDelta > expectedDelta) {
-		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%sIOB %.6f < %.6f",
+		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%sIOB %.6lf < %.6lf",
 			rT.reason, iob_data[0].iob, APS_round(-profile.current_basal * 20 / 60, 2));
-		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%s and minDelta %.6f > expectedDelta %.6f; ",
+		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%s and minDelta %.6lf > expectedDelta %.6lf; ",
 			rT.reason, convert_bg(minDelta, profile), convert_bg(expectedDelta, profile));
 		// predictive low glucose suspend mode: BG is / is projected to be < threshold
 	}
 	else if (bg < threshold || minGuardBG < threshold) {
-		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%sminGuardBG %.6f<%.6f",
+		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%sminGuardBG %.6lf<%.6lf",
 			rT.reason, convert_bg(minGuardBG, profile), convert_bg(threshold, profile));
 		bgUndershoot = target_bg - minGuardBG;
 		worstCaseInsulinReq = bgUndershoot / sens;
@@ -770,7 +781,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	double rate;
 	double insulinScheduled;
 	if (eventualBG < min_bg) { // if eventual BG is below target:
-		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%sEventual BG %.6f < %.6f",
+		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%sEventual BG %.6lf < %.6lf",
 			rT.reason, convert_bg(eventualBG, profile), convert_bg(min_bg, profile));
 		// if 5m or 30m avg BG is rising faster than expected delta
 		if (minDelta > expectedDelta && minDelta > 0 && !carbsReq) {
@@ -786,17 +797,17 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				return tempBasalFunctions.setTempBasal(0, 30, profile, rT, currenttemp);
 			}
 			if (glucose_status.delta > minDelta) {
-				snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%s, but Delta %.6f > expectedDelta %.6f",
+				snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%s, but Delta %.6lf > expectedDelta %.6lf",
 					rT.reason, convert_bg(tick, profile), convert_bg(expectedDelta, profile));
 			}
 			else {
 				snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), 
-					(const char* const)"%s, but Min. Delta %.2f > Exp. Delta %.6f",
+					(const char* const)"%s, but Min. Delta %.2lf > Exp. Delta %.6lf",
 					rT.reason, minDelta, convert_bg(expectedDelta, profile));
 			}
 			if (currenttemp.duration > 15 && (round_basal(basal, profile) == round_basal(currenttemp.rate, profile))) {
 				snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-					(const char* const)"%s, temp %.6f ~ req %.6fU/hr. ",
+					(const char* const)"%s, temp %.6lf ~ req %.6lfU/hr. ",
 					rT.reason, currenttemp.rate, basal);
 				//	NJIT - Prevent Memory Leak
 				if (rT.predBGs.COB != NULL)
@@ -807,7 +818,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 			}
 			else {
 				snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-					(const char* const)"%s; setting current basal of %.6f as temp",
+					(const char* const)"%s; setting current basal of %.6lf as temp",
 					rT.reason, basal);
 				//	NJIT - Prevent Memory Leak
 				if (rT.predBGs.COB != NULL)
@@ -842,7 +853,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		double minInsulinReq = min(insulinReq, naiveInsulinReq);
 		if (insulinScheduled < minInsulinReq - basal * 0.3) {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s, %.6fm@ %.2f is a lot less than needed. ",
+				(const char* const)"%s, %.6lfm@ %.2lf is a lot less than needed. ",
 				rT.reason, currenttemp.duration, currenttemp.rate);
 			//	NJIT - Prevent Memory Leak
 			if (rT.predBGs.COB != NULL)
@@ -853,7 +864,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		}
 		if (!isnan(currenttemp.rate) && (currenttemp.duration > 5 && rate >= currenttemp.rate * 0.8)) {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s, temp %.6f ~< req %.6fU/hr. ",
+				(const char* const)"%s, temp %.6lf ~< req %.6lfU/hr. ",
 				rT.reason, currenttemp.rate, rate);
 			//	NJIT - Prevent Memory Leak
 			if (rT.predBGs.COB != NULL)
@@ -879,7 +890,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				//console.error(durationReq);
 				if (durationReq > 0) {
 					snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-						(const char* const)"%s, setting %.6fm zero temp. ",
+						(const char* const)"%s, setting %.6lfm zero temp. ",
 						rT.reason, durationReq);
 					//	NJIT - Prevent Memory Leak
 					if (rT.predBGs.COB != NULL)
@@ -891,7 +902,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 			}
 			else {
 				snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-					(const char* const)"%s, setting %.6fU/hr. ",
+					(const char* const)"%s, setting %.6lfU/hr. ",
 					rT.reason, rate);
 			}
 			//	NJIT - Prevent Memory Leak
@@ -907,19 +918,19 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		// if in SMB mode, don't cancel SMB zero temp
 		if (glucose_status.delta < minDelta) {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s, Eventual BG %.6f > %.6f but Delta %.6f < Exp. Delta %.6f",
+				(const char* const)"%s, Eventual BG %.6lf > %.6lf but Delta %.6lf < Exp. Delta %.6lf",
 				rT.reason, convert_bg(eventualBG, profile), convert_bg(min_bg, profile), 
 				convert_bg(tick, profile), convert_bg(expectedDelta, profile));
 		}
 		else {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s, Eventual BG %.6f > %.6f but Min. Delta %.2f < Exp. Delta %.6f",
+				(const char* const)"%s, Eventual BG %.6lf > %.6lf but Min. Delta %.2lf < Exp. Delta %.6lf",
 				rT.reason, convert_bg(eventualBG, profile), convert_bg(min_bg, profile),
 				minDelta, convert_bg(expectedDelta, profile));
 		}
 		if (currenttemp.duration > 15 && (round_basal(basal, profile) == round_basal(currenttemp.rate, profile))) {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s, temp %.6f ~ req %.6f U/hr. ",
+				(const char* const)"%s, temp %.6lf ~ req %.6lf U/hr. ",
 				rT.reason, currenttemp.rate, basal);
 			//	NJIT - Prevent Memory Leak
 			if (rT.predBGs.COB != NULL)
@@ -930,7 +941,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		}
 		else {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s; setting current basal of %.6f as temp. ",
+				(const char* const)"%s; setting current basal of %.6lf as temp. ",
 				rT.reason, basal);
 			//	NJIT - Prevent Memory Leak
 			if (rT.predBGs.COB != NULL)
@@ -943,11 +954,11 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	// eventualBG or minPredBG is below max_bg
 	if (min(eventualBG, minPredBG) < max_bg) {
 		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-			(const char* const)"%s%.6f-%.6f in range: no temp required",
+			(const char* const)"%s%.6lf-%.6lf in range: no temp required",
 			rT.reason, convert_bg(eventualBG, profile), convert_bg(minPredBG, profile));
 		if (currenttemp.duration > 15 && (round_basal(basal, profile) == round_basal(currenttemp.rate, profile))) {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s, temp %.6f ~ req %.6fU/hr",
+				(const char* const)"%s, temp %.6lf ~ req %.6lfU/hr",
 				rT.reason, currenttemp.rate, basal);
 			//	NJIT - Prevent Memory Leak
 			if (rT.predBGs.COB != NULL)
@@ -958,7 +969,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		}
 		else {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s; setting current basal of %.6f as temp. ",
+				(const char* const)"%s; setting current basal of %.6lf as temp. ",
 				rT.reason, basal);
 
 			//	NJIT - Prevent Memory Leak
@@ -974,17 +985,17 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	// if iob is over max, just cancel any temps
 	if (eventualBG >= max_bg) {
 		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-			(const char* const)"%sEventual BG %.6f >= %.6f, ",
+			(const char* const)"%sEventual BG %.6lf >= %.6lf, ",
 			rT.reason, convert_bg(eventualBG, profile), convert_bg(max_bg, profile));
 	}
 
 	if (iob_data[0].iob > max_iob) {
 		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-			(const char* const)"%sIOB %.6f > max_iob %.6f",
+			(const char* const)"%sIOB %.6lf > max_iob %.6lf",
 			rT.reason, APS_round(iob_data[0].iob, 2), max_iob);
 		if (currenttemp.duration > 15 && (round_basal(basal, profile) == round_basal(currenttemp.rate, profile))) {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s, temp %.6f ~ req %.6fU.hr",
+				(const char* const)"%s, temp %.6lf ~ req %.6lfU.hr",
 				rT.reason, currenttemp.rate, basal);
 			//	NJIT - Prevent Memory Leak
 			if (rT.predBGs.COB != NULL)
@@ -995,7 +1006,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		}
 		else {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s; setting current basal of %.6f as temp. ",
+				(const char* const)"%s; setting current basal of %.6lf as temp. ",
 				rT.reason, basal);
 			//	NJIT - Prevent Memory Leak
 			if (rT.predBGs.COB != NULL)
@@ -1013,7 +1024,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		// if that would put us over max_iob, then reduce accordingly
 		if (insulinReq > max_iob - iob_data[0].iob) {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%smax_iob %.6f, ",
+				(const char* const)"%smax_iob %.6lf, ",
 				rT.reason, max_iob);
 			insulinReq = max_iob - iob_data[0].iob;
 		}
@@ -1036,7 +1047,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 
 		if (rate > maxSafeBasal) {
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%sadj. req. rate: %.6f to maxSafeBasal: %.6f, ",
+				(const char* const)"%sadj. req. rate: %.6lf to maxSafeBasal: %.6lf, ",
 				rT.reason, rate, maxSafeBasal);
 			rate = round_basal(maxSafeBasal, profile);
 		}
@@ -1044,7 +1055,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		insulinScheduled = currenttemp.duration * (currenttemp.rate - basal) / 60;
 		if (insulinScheduled >= insulinReq * 2) { // if current temp would deliver >2x more than the required insulin, lower the rate
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%s%.6fm@%.2f > 2 * insulinReq. Setting temp basal of %.6fU/hr. ",
+				(const char* const)"%s%.6lfm@%.2lf > 2 * insulinReq. Setting temp basal of %.6lfU/hr. ",
 				rT.reason, currenttemp.duration, currenttemp.rate, rate);
 			//	NJIT - Prevent Memory Leak
 			if (rT.predBGs.COB != NULL)
@@ -1056,7 +1067,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 
 		if (isnan(currenttemp.duration) || currenttemp.duration == 0) { // no temp is set
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%sno temp, setting %.6fU.hr. ",
+				(const char* const)"%sno temp, setting %.6lfU.hr. ",
 				rT.reason, rate);
 			//	NJIT - Prevent Memory Leak
 			if (rT.predBGs.COB != NULL)
@@ -1068,7 +1079,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 
 		if (currenttemp.duration > 5 && (round_basal(rate, profile) <= round_basal(currenttemp.rate, profile))) { // if required temp <~ existing temp basal
 			snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-				(const char* const)"%stemp %.6f >~ req %.6fU/hr. ",
+				(const char* const)"%stemp %.6lf >~ req %.6lfU/hr. ",
 				rT.reason, currenttemp.rate, rate);
 			//	NJIT - Prevent Memory Leak
 			if (rT.predBGs.COB != NULL)
@@ -1080,7 +1091,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 
 		// required temp > existing temp basal
 		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-			(const char* const)"%stemp %.6f<%.6fU/hr. ",
+			(const char* const)"%stemp %.6lf<%.6lfU/hr. ",
 			rT.reason, currenttemp.rate, rate);
 		//	NJIT - Prevent Memory Leak
 		if (rT.predBGs.COB != NULL)

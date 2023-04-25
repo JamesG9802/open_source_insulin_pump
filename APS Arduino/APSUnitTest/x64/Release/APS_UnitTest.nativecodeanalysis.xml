@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\</FILEPATH>
+      <FILENAME>APS_UnitTest.c</FILENAME>
+      <LINE>86</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6262</DEFECTCODE>
+    <DESCRIPTION>Function uses '16984' bytes of stack.  Consider moving some data to heap.</DESCRIPTION>
+    <FUNCTION>Create_IOB_Data</FUNCTION>
+    <DECORATED>Create_IOB_Data</DECORATED>
+    <FUNCLINE>86</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\</FILEPATH>
+      <FILENAME>APS_UnitTest.c</FILENAME>
+      <LINE>215</LINE>
+      <COLUMN>5</COLUMN>
+    </SFA>
+    <DEFECTCODE>6262</DEFECTCODE>
+    <DESCRIPTION>Function uses '66328' bytes of stack.  Consider moving some data to heap.</DESCRIPTION>
+    <FUNCTION>test_determine_basal</FUNCTION>
+    <DECORATED>test_determine_basal</DECORATED>
+    <FUNCLINE>215</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>
