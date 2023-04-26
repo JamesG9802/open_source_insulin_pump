@@ -167,6 +167,7 @@ void setup() {
 }
 void loop() {
   currenttemp = ReadDataFromCGM(&glucose_status, &iob_data, currenttemp);
+  SendCommandToPump(currenttemp, profile);
   delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
 }
 
