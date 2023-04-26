@@ -46,13 +46,18 @@ uint8_t address_array[2];
 uint8_t write_array[2];
 uint16_t writes = 0;
 
-uint8_t insulinDeliveryAmount = 0;
 /**********************************************************************************************
  * Begin main function
 **********************************************************************************************/
 
 int main(void)
 {
+	//	We also use button_array[0] to represent the insulinDeliveryAmount
+	uint8_t insulinDeliveryAmount = button_array[0];
+	
+	//	To minimize changes, we reuse the unused basal_rate to represent the insulinDeliveryIndex
+	uint8_t insulinDeliveryIndex = basal_rate[0];
+	
 	basal_insulin_delivered = false;
 	bolus_insulin_delivered = false;
 	cycle_complete = false;
@@ -145,6 +150,9 @@ int main(void)
 	}
 	
 	flash_erase(&FLASH_0, flash_address, 1);
+	
+	button_array[0] = insulinDeliveryAmount;
+	basal_rate[0] = insulinDeliveryIndex;
 	store_delivery_data();
 	delay_ms(5000);
 	leds_off();

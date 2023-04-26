@@ -12,16 +12,6 @@
 extern "C" {
 	#endif
 
-//	NJIT:	We have reworked the insulin pump to receive input from a secondary device (an Arduino Nano 33 IoT) that serves as
-//	an Artificial Pancreas System (APS). As such, the arduino sends signals to the insulin pump by using reusing the buttons as
-//	a method of communication. 3 other pins are also used to allow the secondary device to send electrical signals to the pump that
-//	are treated as if the buttons are pressed. 
-//	When Button 1 is pressed, the insulinDeliveryIndex is incremented by 1, insulinDelivery amount is left shifted by 1,
-//	and a 1 is |ed to the insulinDeliveryAmount.
-//	When Button 2 is pressed, the insulinDeliveryIndex is incremented by 1 and insulinDelivery amount is left shifted by 1.
-//	When Button 3 is pressed, the main() function is called causing the insulinDelivery amount to be delivered. 
-//	insulinDeliveryIndex is then reset to -1.
-extern int8_t insulinDeliveryIndex;
 
 // Initialise interrupts
 void init_interrupts(void);
