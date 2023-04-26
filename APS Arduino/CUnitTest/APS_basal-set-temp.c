@@ -9,6 +9,11 @@
 #include "APS_Temperature.h"
 #include "APS_Profile.h"
 
+#ifndef min
+#define min(a, b) (((a) < (b)) ? (a) : (b))
+#endif // !min
+
+
 TempBasalFunctions APS_tempBasalFunctions;
 
 void reason(Temp* rT, const char* msg) {

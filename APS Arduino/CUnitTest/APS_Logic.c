@@ -17,6 +17,14 @@
 
 #include "APS_Logic.h"
 
+#ifndef min
+#define min(a, b) (((a) < (b)) ? (a) : (b))
+#endif // !min
+
+#ifndef max
+#define max(a, b) (((a) > (b)) ? (a) : (b))
+#endif // !min
+
 void InitAPS() {
 	APS_TempBasalFunctions_Init();
 }
@@ -202,7 +210,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 
 	double minDelta = min(glucose_status.delta, glucose_status.short_avgdelta);
 	double minAvgDelta = min(glucose_status.short_avgdelta, glucose_status.long_avgdelta);
-	double maxDelta = max(glucose_status.delta, glucose_status.short_avgdelta, glucose_status.long_avgdelta);
+	double maxDelta = max(glucose_status.delta, max(glucose_status.short_avgdelta, glucose_status.long_avgdelta));
 
 
 	// Cancel high temps (and replace with neutral) or shorten long zero temps for various error conditions
@@ -226,11 +234,15 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	}
 
 	if (minAgo > 12 || minAgo < -5) { // Dexcom data is too old, or way in the future
-		const char timeString[512];
+	/*	const char timeString[512];		ctime_s does not work on Arduino Nano 33 IoT due to lack of Real Time Clock
 		ctime_s(timeString, sizeof(timeString), &bgTime);
 		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
 			(const char* const)"If current system time is correct, then BG data is too old. The last BG data was read %.6lfm ago at %s", 
 			minAgo, timeString);
+		*/
+		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
+			(const char* const)"If current system time is correct, then BG data is too old. The last BG data was read ?m ago at %s",
+			minAgo);
 		// if BG is too old/noisy, or is changing less than 1 mg/dL/5m for 45m, cancel any high temps and shorten any long zero temps
 	}
 	else if (tooflat) {
@@ -760,7 +772,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 			// NJIT - No ZT predict so use .5 as minimum
 			double blendedMinPredBG = fractionCarbsLeft * minCOBPredBG + (1 - fractionCarbsLeft) * .5f;
 			// if blendedMinPredBG > minCOBPredBG, use that instead
-			minPredBG = APS_round(max(minIOBPredBG, minCOBPredBG, blendedMinPredBG), 0);
+			minPredBG = APS_round(max(minIOBPredBG, max(minCOBPredBG, blendedMinPredBG)), 0);
 			// if carbs have been entered, but have expired, use minUAMPredBG
 		}
 		else {

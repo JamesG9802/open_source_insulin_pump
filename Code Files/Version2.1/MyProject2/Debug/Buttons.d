@@ -103,7 +103,7 @@ Buttons.d Buttons.o: .././Buttons.c .././atmel_start_pins.h \
  ../hal/include/hal_pwm.h ../hal/include/hpl_pwm.h \
  ../hpl/tc/hpl_tc_base.h ../hal/include/hal_dac_sync.h \
  ../hal/include/hpl_dac_sync.h ../hal/include/hal_wdt.h \
- ../hal/include/hpl_wdt.h .././Buttons.h
+ ../hal/include/hpl_wdt.h .././Buttons.h .././insulin_rate.h
 
 .././atmel_start_pins.h:
 
@@ -388,3 +388,5 @@ C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\Atmel\SAMD21_DFP\1.3.395\samd21a
 ../hal/include/hpl_wdt.h:
 
 .././Buttons.h:
+
+.././insulin_rate.h:
