@@ -1143,5 +1143,5 @@ int startTest() {
 	return round_basal_test && determine_basal_test;
 }
 int main() {
-	return startTest();
+	return startTest() == 1;
 }
