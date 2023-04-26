@@ -101,7 +101,11 @@ void set_osc_control()
 void set_alarm_register()
 {
 	uint8_t address = 0x98; // 0x18 |= (1 << 7)
-	uint8_t data[1] = {0b00010100};
+	//	NJIT: We are using a secondary device to send instructions on when to deliver insulin dosages.
+	//	As such, we don't want the device to reset by itself. See documentation for details on register values:
+	//	https://abracon.com/Support/AppsManuals/Precisiontiming/AB18XX-Application-Manual.pdf
+	//	uint8_t data[1] = {0b00010100};
+	uint8_t data[1] = {0b00000000};
 	rtc_write_operation(address, data, 1);
 	address = 0x8A; //0x0A |= (1 << 7)
 	data[0] = 0b00110000;
@@ -141,8 +145,9 @@ void rtc_set_current_time(uint8_t year, uint8_t month, uint8_t day, uint8_t hour
 void rtc_get_time(unsigned char date_and_time[])
 {
 	uint8_t date_and_time_bcd[5] = {0};
-	char ascii[2] = {0};
-	
+	//	NJIT: Signed warning fix
+	//	char ascii[2] = {0};
+	unsigned char ascii[2] = {0};
 	rtc_read_operation(0x02, date_and_time_bcd, 5);
 	bcd2ascii(date_and_time_bcd[1], ascii);
 	date_and_time[1] = ascii[0];
@@ -185,7 +190,9 @@ void rtc_write_second()
 	data[0] = 0x82;
 	data[1] = 0b00010111;
 	gpio_set_pin_level(SS_RTC, false);
-	io_write(spi_io, &data, 2);
+	//	NJIT: probably an error; should just be 'data' since data is already a pointer
+	//	io_write(spi_io, &data, 2);
+	io_write(spi_io, data, 2);
 	gpio_set_pin_level(SS_RTC, true);
 }
 
@@ -209,6 +216,9 @@ void rtc_get_hour(uint8_t current_hour[1])
 {
 	uint8_t hour_bcd[1];
 	rtc_read_operation(0x03, hour_bcd, 1);
-	current_hour[0] = bcd2bin(hour_bcd);
+	//	NJIT: This function (rtc_get_hour) is never called in code, however, it is probably incorrect
+	//	No reason to pass in a pointer when the function reasonably expects an 8-bit integer.
+	//	current_hour[0] = bcd2bin(hour_bcd);
+	current_hour[0] = bcd2bin(hour_bcd[0]);
 }
 

@@ -1,32 +1,84 @@
-﻿  APS-round-basal.c
+﻿  APS_Logic.c
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(72,22): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(80,18): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(81,20): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(82,19): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(136,24): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(150,20): warning C4244: 'initializing': conversion from 'long double' to '__int64', possible loss of data
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(196,56): warning C4244: 'function': conversion from 'time_t' to 'double', possible loss of data
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(238,21): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(251,24): warning C4477: 'snprintf' : format string '%ld' requires an argument of type 'long', but variadic argument 1 has type 'double'
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(259,24): warning C4477: 'snprintf' : format string '%ld' requires an argument of type 'long', but variadic argument 3 has type 'double'
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(440,68): warning C4244: 'function': conversion from '__int64' to 'double', possible loss of data
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(569,72): warning C4244: 'function': conversion from '__int64' to 'double', possible loss of data
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(698,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(708,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(771,26): warning C4002: too many arguments for function-like macro invocation 'max'
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(813,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(820,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(829,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(836,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(900,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(901,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(902,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(919,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(920,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(921,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(939,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(940,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(941,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(950,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(951,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(952,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(985,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(986,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(987,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(996,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(997,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(998,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1022,25): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1023,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1024,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1035,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1036,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1037,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1062,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1063,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1064,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1073,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1074,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1075,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1090,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1091,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1092,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1102,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1103,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1104,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1127,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1128,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1129,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1138,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1139,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1140,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1164,76): warning C4244: 'function': conversion from '__int64' to 'double', possible loss of data
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1187,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1188,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1189,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1199,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1200,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1201,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1211,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1212,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1213,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1223,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1224,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(1225,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(638,9): warning C4101: 'lastZTpredBG': unreferenced local variable
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(637,9): warning C4101: 'lastUAMpredBG': unreferenced local variable
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(298,9): warning C4101: 'high_bg': unreferenced local variable
   APS_basal-set-temp.c
-  APS_Logic.c
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(27,15): warning C4244: 'initializing': conversion from 'long double' to 'long', possible loss of data
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(71,56): warning C4244: 'function': conversion from 'time_t' to 'double', possible loss of data
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(88,20): warning C4002: too many arguments for function-like macro invocation 'max'
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(123,24): warning C4477: 'snprintf' : format string '%ld' requires an argument of type 'long', but variadic argument 1 has type 'double'
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(131,24): warning C4477: 'snprintf' : format string '%ld' requires an argument of type 'long', but variadic argument 3 has type 'double'
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(312,68): warning C4244: 'function': conversion from '__int64' to 'double', possible loss of data
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(441,72): warning C4244: 'function': conversion from '__int64' to 'double', possible loss of data
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(569,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(578,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(641,26): warning C4002: too many arguments for function-like macro invocation 'max'
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(657,36): warning C4020: 'round': too many actual parameters
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(682,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(689,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(698,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(705,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(717,42): warning C4020: 'perror': too many actual parameters
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(740,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(741,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(742,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(510,9): warning C4101: 'lastZTpredBG': unreferenced local variable
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(509,9): warning C4101: 'lastUAMpredBG': unreferenced local variable
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_Logic.c(170,9): warning C4101: 'high_bg': unreferenced local variable
-  ArduinoUnitTest.c
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\ArduinoUnitTest.c(32,9): warning C4013: 'printf' undefined; assuming extern returning int
   Generating code
-  0 of 14 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  0 of 12 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

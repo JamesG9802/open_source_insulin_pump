@@ -3,17 +3,20 @@
 /*
 This is the source Arduino code converted into C for testing.
 */
-/*  APS Button Pins for Arduino NANO 33 IoT */
 
 #include "Arduino.h"
-#include "APS_Logic.h"
+
+/*  Start of Arduino code   */
+
+/*  APS Button Pins for Arduino NANO 33 IoT */
+
+#include "Arduino_Logic.h"
 
 #define SERIAL_TRANSMITTER 0
 #define SERIAL_RECEIVER 1
 #define APS_BUTTON1  6
 #define APS_BUTTON2  7
 #define APS_BUTTON3  18
-
 
 /*  Initialize communication with Insulin Pump  */
 void InitInsulinPump() {
@@ -42,13 +45,17 @@ void PressButton(unsigned char buttonID) {
 
 /*  Initialize communication between Arduino and Continuous Glucose Monitor (CGM).  */
 void InitCGM() {
-    //  Serial.Begin(9600); But we don't have a CGM; we only assume it exists
+    // Serial.begin(9600);
 }
 void setup() {
-    InitInsulinPump();
-    InitCGM();
+    //InitInsulinPump();
+    //InitCGM();
+    pinMode(13, OUTPUT_a);
 }
 void loop() {
-    //DeliverInsulin  - not implemented yet
-    delay(1000 * 60); //  Sleep for 1 minute 
+    digitalWrite(13, HIGH);
+    delay(50);
+    digitalWrite(13, LOW);
+    delay(50);
 }
+

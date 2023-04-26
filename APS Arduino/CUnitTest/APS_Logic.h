@@ -16,6 +16,41 @@ extern "C" {
 #include "APS_Meal_Data.h"
 #include "APS_basal-set-temp.h"
 
+
+/// <summary>
+/// Creates a blank profile for testing.
+/// </summary>
+/// <returns></returns>
+Profile Create_Profile();
+
+/// <summary>
+/// Creates a blank Glucose status for testing.
+/// </summary>
+/// <returns></returns>
+Glucose_Status Create_GlucoseStatus();
+
+/// <summary>
+/// Creates a blank Temp for testing.
+/// </summary>
+/// <returns></returns>
+Temp Create_Temp();
+
+IOB_Data Create_IOB_Data();
+
+/// <summary>
+/// Creates a blank Autosens for testing.
+/// </summary>
+/// <returns></returns>
+Autosens Create_Autosens();
+
+/// <summary>
+/// Creates a blank MealData for testing.
+/// </summary>
+/// <returns></returns>
+Meal_Data Create_MealData();
+
+void InitAPS();
+
 /*	Due to conflict with round() from <math.h>, this function has been renamed	*/
 //	Rounds value to 'digits' decimal places
 double APS_round(double value, unsigned long digits);

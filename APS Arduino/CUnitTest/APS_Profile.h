@@ -2,7 +2,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-/*	The original documentation lists out profiles in .json format	*/
+/*	The original documentation lists out profiles in .json format	
+	Default values based on oref documentation.
+*/
 typedef struct APS_Profile {
 	char out_units[128];
 	double max_daily_safety_multiplier;		//	if NAN,		then treat as invalid
@@ -30,6 +32,8 @@ typedef struct APS_Profile {
 	double remainingCarbsCap;				//	invalid if NAN
 	double remainingCarbsFraction;			//	invalid if NAN
 	double carbsReqThreshold;
+	double dia;
+	char type[256];
 } Profile; 
 #ifdef __cplusplus
 }

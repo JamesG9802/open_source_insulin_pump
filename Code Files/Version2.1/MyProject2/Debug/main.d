@@ -131,7 +131,7 @@ main.d main.o: .././main.c .././atmel_start.h .././driver_init.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\stdlib.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\stdlib.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\alloca.h \
- .././rtc.h .././Buttons.h .././FlashMCU.h
+ .././rtc.h .././Buttons.h .././FlashMCU.h .././insulin_rate.h
 
 .././atmel_start.h:
 
@@ -484,3 +484,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 .././Buttons.h:
 
 .././FlashMCU.h:
+
+.././insulin_rate.h:
