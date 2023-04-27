@@ -1130,7 +1130,7 @@ int test_determine_basal() {
 		printf("Reason: %s\n", output.reason);
 	}
 	printf("\n--------------------------------\nSummary for Determine Basal: %d/%d tests passed\n", testsPassed, testsCount);
-	return testsPassed = testsCount;
+	return testsPassed == testsCount;
 }
 int startTest() {
 	InitAPS();
