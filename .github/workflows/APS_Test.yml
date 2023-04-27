@@ -3,13 +3,13 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: MSBuild
+name: APS_Build_and_Test
 
 on:
   push:
-    branches: [ "CI/CD-Update" ]
+    branches: [ "master", "AutoTest" ]
   pull_request:
-    branches: [ "CI/CD-Update" ]
+    branches: [ "master", "AutoTest" ]
 
 env:
   # Path to the solution file relative to the root of the project.
