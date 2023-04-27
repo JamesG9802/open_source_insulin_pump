@@ -639,7 +639,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	double maxUAMPredBG = bg;
 	double eventualPredBG = bg;
 	double lastIOBpredBG;
-	double lastCOBpredBG;
+	double lastCOBpredBG = NAN;
 	double lastUAMpredBG;
 	double lastZTpredBG;
 	double UAMduration = 0;
@@ -793,15 +793,16 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	rT.CR = APS_round(profile.carb_ratio, 2);
 	rT.target_bg = convert_bg(target_bg, profile);
 
+/*
   char buffer[20];
   dtostrf(rT.BGI, 8, 2, buffer);
+*/
 
 	snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-		(const char* const)"COB: %.6lf, Dev: %.6lf, BGI: %s, ISF: %.6lf, CR: %.6lf, minPredBG %.6lf, minGuardBG %.6lf, IOpredBG %.6lf"
-		, rT.COB, rT.deviation, buffer, rT.ISF, rT.CR, convert_bg(minPredBG, profile), 
+		(const char* const)"COB: %.6lf, Dev: %.6lf, BGI: %.6lf, ISF: %.6lf, CR: %.6lf, minPredBG %.6lf, minGuardBG %.6lf, IOpredBG %.6lf"
+		, rT.COB, rT.deviation, rT.BGI, rT.ISF, rT.CR, convert_bg(minPredBG, profile), 
 		convert_bg(minGuardBG, profile), convert_bg(lastIOBpredBG, profile));
-	printf("\n\n:(\n");
-	if (lastCOBpredBG > 0) {
+	if (!isnan(lastCOBpredBG) && lastCOBpredBG > 0) {
 		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
 			(const char* const)"%s, COBpredBG %.6lf"
 			,rT.reason, convert_bg(lastCOBpredBG, profile));
