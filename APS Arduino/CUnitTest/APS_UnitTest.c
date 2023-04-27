@@ -127,7 +127,7 @@ int test_determine_basal() {
 	Temp currenttemp = Create_Temp();
 		currenttemp.duration = 0;
 		currenttemp.rate = 0;
-		snprintf(currenttemp.temp, sizeof(currenttemp.temp), "absolute");
+		snprintf((char* const)currenttemp.temp, sizeof(currenttemp.temp), "absolute");
 	IOB_Data iob_data = Create_IOB_Data();
 		iob_data.iob = 0;
 		iob_data.activity = 0;
@@ -1073,12 +1073,12 @@ int test_determine_basal() {
 		if (output.rate == 0.05 && output.duration == 30)
 		{
 			printf("\n\nTest 38:\tshould round appropriately for small basals when setting basal to maxSafeBasal  (%.6lf and %.6lf): SUCCESS\n",
-				output.rate);
+				output.rate, output.duration);
 			testsPassed++;
 		}
 		else
 			printf("\n\nTest 38:\tshould round appropriately for small basals when setting basal to maxSafeBasal  (%.6lf = 0.05 and %.6lf = 30): FAILURE\n",
-				output.rate);
+				output.rate, output.duration);
 		printf("Reason: %s\n", output.reason);
 	}
 	/*	Test 39	should match the basal rate precision available on a 523  */
@@ -1097,12 +1097,12 @@ int test_determine_basal() {
 		if (output.rate == 0.825 && output.duration == 30)
 		{
 			printf("\n\nTest 39:\tshould match the basal rate precision available on a 523 (%.6lf and %.6lf): SUCCESS\n",
-				output.rate);
+				output.rate, output.duration);
 			testsPassed++;
 		}
 		else
 			printf("\n\nTest 39:\tshould match the basal rate precision available on a 523 (%.6lf = 0.825 and %.6lf = 30): FAILURE\n",
-				output.rate);
+				output.rate, output.duration);
 		printf("Reason: %s\n", output.reason);
 	}
 	/*	Test 40	should match the basal rate precision available on a 522  */
@@ -1121,12 +1121,12 @@ int test_determine_basal() {
 		if (output.rate == 0.9 && output.duration == 30)
 		{
 			printf("\n\nTest 40:\tshould match the basal rate precision available on a 522 (%.6lf and %.6lf): SUCCESS\n",
-				output.rate);
+				output.rate, output.duration);
 			testsPassed++;
 		}
 		else
 			printf("\n\nTest 40:\tshould match the basal rate precision available on a 522 (%.6lf = 0.9 and %.6lf = 30): FAILURE\n",
-				output.rate);
+				output.rate, output.duration);
 		printf("Reason: %s\n", output.reason);
 	}
 	printf("\n--------------------------------\nSummary for Determine Basal: %d/%d tests passed\n", testsPassed, testsCount);
@@ -1143,5 +1143,9 @@ int startTest() {
 	return round_basal_test && determine_basal_test;
 }
 int main() {
+<<<<<<< Updated upstream
 	return !startTest();	//	in github workflow a value of 1 (which is true in C) is treated as false
+=======
+	return !startTest();	//	for github workflow, return result is 0 for passing.
+>>>>>>> Stashed changes
 }

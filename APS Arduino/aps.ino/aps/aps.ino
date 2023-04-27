@@ -1,4 +1,7 @@
 #include <math.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 #include "APS_Logic.h"
 #include "APS_Glucose_Status.h"
@@ -140,6 +143,17 @@ void SendCommandToPump(Temp currenttemp, Profile profile) {
     * INSULIN_INTERVAL; // 100% active during insulin interval
   }
   unsigned char roundedUnits = (unsigned char)round_basal(units, profile);
+  char buffer[32];
+  snprintf(buffer, sizeof(buffer), "Sending %u units\n", roundedUnits);
+  Serial.print(buffer);
+  
+  Serial.print("Reason (if any): ");
+  Serial.print(currenttemp.reason);
+  Serial.print("\n");
+
+  Serial.print("Error (if any): ");
+  Serial.print(currenttemp.error);
+  Serial.print("\n");
   SendNumberToPump(roundedUnits);
 }
 /*  Initialize communication between Arduino and Continuous Glucose Monitor (CGM).  
