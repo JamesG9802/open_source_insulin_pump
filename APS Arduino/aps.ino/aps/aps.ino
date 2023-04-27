@@ -147,30 +147,48 @@ void SendCommandToPump(Temp temp, Profile userProfile) {
   double rate = temp.rate; //  rate is in units/hour;
   double duration = temp.duration; //  duration is in minutes;
   double units;
+  Serial.print("\nRate: ");
+  Serial.print(rate);
+  Serial.print(" |Duration: ");
+  Serial.print(duration);
+  Serial.print(" |Units: ");
+  Serial.print(units);
+  Serial.println();
+
   //  Safety check to prevent erroneous output
   if(isnan(rate) || isnan(duration) || rate == 0 || duration == 0)
   {
     Serial.print("No need to deliver dosage.");
     return;
   }
+  int insulinIntervalToMinutes = INSULIN_INTERVAL / 1000 / 60; // dividing to minutes
   if(duration < INSULIN_INTERVAL) //  should finish by the time the next check occurs
   {
     //  units = number of 1/10th units insulin pump delivers for respective insulin interval
     units = rate * 10 //  units per hr * 10 (1/10th units) per unit
     / 60  //  1 hour per 60 minutes
-    * (duration / INSULIN_INTERVAL) * INSULIN_INTERVAL; // % active during insulin interval
+    * (duration / insulinIntervalToMinutes) * insulinIntervalToMinutes
+    ; // % active during insulin interval
   }
   else
   {
     //  units = number of 1/10th units insulin pump delivers for respective insulin interval
     units = rate * 10 //  units per hr * 10 (1/10th units) per unit
     / 60  //  1 hour per 60 minutes
-    * INSULIN_INTERVAL; // 100% active during insulin interval
+    * insulinIntervalToMinutes; // 100% active during insulin interval
   }
   unsigned char roundedUnits = (unsigned char)round_basal(units, userProfile);
+
+  Serial.print("\nUnits: ");
+  Serial.print(units);
+  Serial.print(" |rounded Units: ");
+  Serial.print(roundedUnits);
+  Serial.print("\n");
+
   char buffer[32];
   snprintf(buffer, sizeof(buffer), "Sending %u units\n", roundedUnits);
   Serial.print(buffer);
+
   
   Serial.print("Reason (if any): ");
   Serial.print(temp.reason);
@@ -201,19 +219,17 @@ Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp currenttemp) {
   return determine_basal(*gs, currenttemp, id, *profile, *autosens, *meal_data, APS_tempBasalFunctions, 1);
 }
 void setup() {
-//  InitInsulinPump();
-// InitCGM();
-Serial.begin(9600);
+InitInsulinPump();
+InitCGM();
 pinMode(LED_BUILTIN, OUTPUT);
 }
 void loop() {
-/* Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, *currenttemp);
-  free(currenttemp);
+ Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, *currenttemp);
   memmove(currenttemp, &newTemp, sizeof(Temp));
   SendCommandToPump(*currenttemp, *profile);
 //  delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
-*/
-Serial.print("apple");
+
+Serial.println("\nLOOP:     ");
 digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
   delay(1000);                      // wait for a second
   digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
