@@ -1130,7 +1130,7 @@ int test_determine_basal() {
 		printf("Reason: %s\n", output.reason);
 	}
 	printf("\n--------------------------------\nSummary for Determine Basal: %d/%d tests passed\n", testsPassed, testsCount);
-	return testsPassed = testsCount;
+	return testsPassed == testsCount;
 }
 int startTest() {
 	InitAPS();
@@ -1143,5 +1143,5 @@ int startTest() {
 	return round_basal_test && determine_basal_test;
 }
 int main() {
-	return startTest();
+	return !startTest();	//	in github workflow a value of 1 (which is true in C) is treated as false
 }
