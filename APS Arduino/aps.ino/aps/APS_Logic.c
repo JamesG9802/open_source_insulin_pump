@@ -527,9 +527,11 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 
 	//	Append == Push
 	double* fakeBG = malloc(sizeof(double));
+  double* fakeBG_Copy = malloc(sizeof(double));	//	lists cannot keep a copy of the same pointer or else double free error
 	*fakeBG = bg;
+  *fakeBG_Copy = bg;
 	List_Append(COBpredBGs, fakeBG);
-	List_Append(IOBpredBGs, fakeBG);
+	List_Append(IOBpredBGs, fakeBG_Copy);
 //	List_Append(UAMpredBGs, fakeBG);
 //	List_Append(ZTpredBGs, fakeBG);
 

@@ -47,27 +47,17 @@ void InitInsulinPump()  {
 
   /*  Setup internal variables  */
   glucose_status = (Glucose_Status*)malloc(sizeof(Glucose_Status));
-
   iob_data = (IOB_Data*)malloc(sizeof(IOB_Data));
-  
   currenttemp = (Temp*)malloc(sizeof(Temp));
-  
   profile = (Profile*)malloc(sizeof(Profile));
-  
   autosens = (Autosens*)malloc(sizeof(Autosens));
-  
   meal_data = (Meal_Data*)malloc(sizeof(Meal_Data));
   
   Glucose_Status tempg = Create_GlucoseStatus();
-  
   IOB_Data tempi = Create_IOB_Data();
-  
   Temp tempt = Create_Temp();
-
   Profile tempp = Create_Profile();
-  
   Autosens tempa = Create_Autosens();
-
   Meal_Data tempm = Create_MealData();
 
   /*  User Data variables are initialized with default test parameters  */
@@ -167,8 +157,7 @@ void SendCommandToPump(Temp temp, Profile userProfile) {
     //  units = number of 1/10th units insulin pump delivers for respective insulin interval
     units = rate * 10 //  units per hr * 10 (1/10th units) per unit
     / 60  //  1 hour per 60 minutes
-    * duration
-    ; // % active during insulin interval
+    * duration; // % active during insulin interval
   }
   else
   {
@@ -219,18 +208,18 @@ Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp currenttemp) {
   return determine_basal(*gs, currenttemp, id, *profile, *autosens, *meal_data, APS_tempBasalFunctions, 1);
 }
 void setup() {
-InitInsulinPump();
-InitCGM();
-pinMode(LED_BUILTIN, OUTPUT);
+  InitInsulinPump();
+  InitCGM();
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 void loop() {
- Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, *currenttemp);
+  Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, *currenttemp);
   memmove(currenttemp, &newTemp, sizeof(Temp));
   SendCommandToPump(*currenttemp, *profile);
-//  delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
+  //  delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
 
-Serial.println("\nLOOP:     ");
-digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
+  Serial.println("\nLOOP:     ");
+  digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
   delay(1000);                      // wait for a second
   digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
   delay(1000);   

@@ -13,8 +13,8 @@ struct Temp {
 	double duration;	//	invalid if NAN
 	double rate;		//	invalid if NAN
 	const char temp[128];
-	const char reason[4096];
-	const char error[4096];
+	const char reason[256];
+	const char error[256];
 	long long deliverAt;	//	milliseconds since unix epoch
 	long long date;			//	milliseconds since unix epoch
 	double bg;
