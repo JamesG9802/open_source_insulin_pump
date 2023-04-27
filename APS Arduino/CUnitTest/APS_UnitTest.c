@@ -1143,5 +1143,5 @@ int startTest() {
 	return round_basal_test && determine_basal_test;
 }
 int main() {
-	return startTest() == 1;
+	return !startTest();	//	in github workflow a value of 1 (which is true in C) is treated as false
 }
