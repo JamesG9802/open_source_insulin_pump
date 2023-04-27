@@ -1143,9 +1143,5 @@ int startTest() {
 	return round_basal_test && determine_basal_test;
 }
 int main() {
-<<<<<<< Updated upstream
-	return !startTest();	//	in github workflow a value of 1 (which is true in C) is treated as false
-=======
 	return !startTest();	//	for github workflow, return result is 0 for passing.
->>>>>>> Stashed changes
 }
