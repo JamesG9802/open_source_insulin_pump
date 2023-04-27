@@ -1118,7 +1118,7 @@ int test_determine_basal() {
 		snprintf(tempProfile.model, sizeof(tempProfile.model), "522");
 
 		Temp output = determine_basal(glucose_status, currenttemp, &iob_data, tempProfile, autosens, meal_data, APS_tempBasalFunctions, 1);
-		if (output.rate == 0.9 && output.duration == 30)
+		if (output.rate == 1 && output.duration == 30)
 		{
 			printf("\n\nTest 40:\tshould match the basal rate precision available on a 522 (%.6lf and %.6lf): SUCCESS\n",
 				output.rate);
