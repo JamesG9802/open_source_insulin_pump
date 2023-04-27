@@ -162,19 +162,19 @@ void SendCommandToPump(Temp temp, Profile userProfile) {
     return;
   }
   int insulinIntervalToMinutes = INSULIN_INTERVAL / 1000 / 60; // dividing to minutes
-  if(duration < INSULIN_INTERVAL) //  should finish by the time the next check occurs
+  if(duration < insulinIntervalToMinutes) //  should finish by the time the next check occurs
   {
     //  units = number of 1/10th units insulin pump delivers for respective insulin interval
     units = rate * 10 //  units per hr * 10 (1/10th units) per unit
     / 60  //  1 hour per 60 minutes
-    * (duration / insulinIntervalToMinutes) * insulinIntervalToMinutes
+    * duration
     ; // % active during insulin interval
   }
   else
   {
     //  units = number of 1/10th units insulin pump delivers for respective insulin interval
     units = rate * 10 //  units per hr * 10 (1/10th units) per unit
-    / 60  //  1 hour per 60 minutes
+    / 60  //  1 hour per minute
     * insulinIntervalToMinutes; // 100% active during insulin interval
   }
   unsigned char roundedUnits = (unsigned char)round_basal(units, userProfile);
@@ -186,7 +186,7 @@ void SendCommandToPump(Temp temp, Profile userProfile) {
   Serial.print("\n");
 
   char buffer[32];
-  snprintf(buffer, sizeof(buffer), "Sending %u units\n", roundedUnits);
+  snprintf(buffer, sizeof(buffer), "Sending %u 1/10th units\n", roundedUnits);
   Serial.print(buffer);
 
   
