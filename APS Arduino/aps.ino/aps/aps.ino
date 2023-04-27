@@ -23,16 +23,16 @@
 
 #define INSULIN_INTERVAL  (1000 * 60 * 5) //  amount of time for how long it takes to recalculate required basal: default 5 min.
 //  CGM varaibles
-Glucose_Status glucose_status;
-IOB_Data iob_data;
+Glucose_Status* glucose_status;
+IOB_Data* iob_data;
 
 //  User Data
-Profile profile;
-Autosens autosens;
-Meal_Data meal_data;
+Profile* profile;
+Autosens* autosens;
+Meal_Data* meal_data;
 
 //  Current Insulin Rates
-Temp currenttemp;
+Temp* currenttemp;
 
 
 /*  Initialize communication with Insulin Pump  */
@@ -46,44 +46,68 @@ void InitInsulinPump()  {
   InitAPS();
 
   /*  Setup internal variables  */
-  glucose_status = Create_GlucoseStatus();
-  iob_data = Create_IOB_Data();
-  currenttemp = Create_Temp();
-  profile = Create_Profile();
-  autosens = Create_Autosens();
-  meal_data = Create_MealData();
+  glucose_status = (Glucose_Status*)malloc(sizeof(Glucose_Status));
+
+  iob_data = (IOB_Data*)malloc(sizeof(IOB_Data));
+  
+  currenttemp = (Temp*)malloc(sizeof(Temp));
+  
+  profile = (Profile*)malloc(sizeof(Profile));
+  
+  autosens = (Autosens*)malloc(sizeof(Autosens));
+  
+  meal_data = (Meal_Data*)malloc(sizeof(Meal_Data));
+  
+  Glucose_Status tempg = Create_GlucoseStatus();
+  
+  IOB_Data tempi = Create_IOB_Data();
+  Temp tempt = Create_Temp();
+
+  Profile tempp = Create_Profile();
+  
+  Autosens tempa = Create_Autosens();
+
+  Meal_Data tempm = Create_MealData();
 
   /*  User Data variables are initialized with default test parameters  */
-  profile.max_iob = 2.5;
-  profile.dia = 3;
-  snprintf(profile.type, sizeof(profile.type), "current");
-  profile.current_basal = .9;
-  profile.max_daily_basal = 1.3;
-  profile.max_basal = 3.5;
-  profile.max_bg = 120;
-  profile.min_bg = 110;
-  profile.sens = 40;
-  profile.carb_ratio = 10;
+  tempp.max_iob = 2.5;
+  tempp.dia = 3;
+  snprintf(tempp.type, sizeof(tempp.type), "current");
+  tempp.current_basal = .9;
+  tempp.max_daily_basal = 1.3;
+  tempp.max_basal = 3.5;
+  tempp.max_bg = 120;
+  tempp.min_bg = 110;
+  tempp.sens = 40;
+  tempp.carb_ratio = 10;
 
-  autosens.ratio = 1.0;
+  tempa.ratio = 1.0;
 
-  meal_data.carbs = 50;
-  meal_data.nsCarbs = 50;
-  meal_data.bwCarbs = 0;
-  meal_data.journalCarbs = 0;
-  meal_data.mealCOB = 0;
-  meal_data.currentDeviation = 0;
-  meal_data.maxDeviation = 0;
-  meal_data.minDeviation = 0;
-  meal_data.slopeFromMaxDeviation = 0;
-  meal_data.slopeFromMinDeviation = 0;
-  meal_data.allDeviations = (double*)malloc(sizeof(double) * 5);
-  meal_data.allDeviations[0] = 0;
-  meal_data.allDeviations[1] = 0;
-  meal_data.allDeviations[2] = 0;
-  meal_data.allDeviations[3] = 0;
-  meal_data.allDeviations[4] = 0;
-  meal_data.bwFound = 0;
+  tempm.carbs = 50;
+  tempm.nsCarbs = 50;
+  tempm.bwCarbs = 0;
+  tempm.journalCarbs = 0;
+  tempm.mealCOB = 0;
+  tempm.currentDeviation = 0;
+  tempm.maxDeviation = 0;
+  tempm.minDeviation = 0;
+  tempm.slopeFromMaxDeviation = 0;
+  tempm.slopeFromMinDeviation = 0;
+  tempm.allDeviations = (double*)malloc(sizeof(double) * 5);
+  tempm.allDeviations[0] = 0;
+  tempm.allDeviations[1] = 0;
+  tempm.allDeviations[2] = 0;
+  tempm.allDeviations[3] = 0;
+  tempm.allDeviations[4] = 0;
+  tempm.bwFound = 0;
+
+  
+  memmove(glucose_status, &tempg, sizeof(Glucose_Status));
+  memmove(iob_data, &tempi, sizeof(IOB_Data));
+  memmove(currenttemp, &tempt, sizeof(Temp));
+  memmove(profile, &tempp, sizeof(Profile));
+  memmove(autosens, &tempa, sizeof(Autosens));
+  memmove(meal_data, &tempm, sizeof(Meal_Data));
 }
 
 /*  Take in a button ID and send a signal for .1s to Insulin Pump System (IPS)  
@@ -118,9 +142,9 @@ void SendNumberToPump(unsigned char number) {
 }
 /*  Given the current insulin dosage, calculate the appropriate units to send and tell the pump to deliver it.
 */
-void SendCommandToPump(Temp currenttemp, Profile profile) {
-  double rate = currenttemp.rate; //  rate is in units/hour;
-  double duration = currenttemp.duration; //  duration is in minutes;
+void SendCommandToPump(Temp temp, Profile userProfile) {
+  double rate = temp.rate; //  rate is in units/hour;
+  double duration = temp.duration; //  duration is in minutes;
   double units;
   //  Safety check to prevent erroneous output
   if(isnan(rate) || isnan(duration) || rate == 0 || duration == 0)
@@ -142,17 +166,17 @@ void SendCommandToPump(Temp currenttemp, Profile profile) {
     / 60  //  1 hour per 60 minutes
     * INSULIN_INTERVAL; // 100% active during insulin interval
   }
-  unsigned char roundedUnits = (unsigned char)round_basal(units, profile);
+  unsigned char roundedUnits = (unsigned char)round_basal(units, userProfile);
   char buffer[32];
   snprintf(buffer, sizeof(buffer), "Sending %u units\n", roundedUnits);
   Serial.print(buffer);
   
   Serial.print("Reason (if any): ");
-  Serial.print(currenttemp.reason);
+  Serial.print(temp.reason);
   Serial.print("\n");
 
   Serial.print("Error (if any): ");
-  Serial.print(currenttemp.error);
+  Serial.print(temp.error);
   Serial.print("\n");
   SendNumberToPump(roundedUnits);
 }
@@ -162,26 +186,36 @@ void SendCommandToPump(Temp currenttemp, Profile profile) {
 void InitCGM()  {
    Serial.begin(9600);
 }
-Temp ReadDataFromCGM(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp currenttemp) {
+Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp currenttemp) {
   /* Example test case #26: should high-temp when high and falling slower than BGI 
     Expected output of rate > 1 && duration > 30
   */
-  glucose_status->delta = -1;
-  glucose_status->glucose = 175;
-  glucose_status->long_avgdelta = -1;
-  glucose_status->short_avgdelta = -1;
-  iob_data->iob = 1;
-  iob_data->activity = 0.01;
-  iob_data->bolussnooze = 0;
-  return determine_basal(*glucose_status, currenttemp, iob_data, profile, autosens, meal_data, APS_tempBasalFunctions, 1);
+  gs->delta = -1;
+  gs->glucose = 175;
+  gs->long_avgdelta = -1;
+  gs->short_avgdelta = -1;
+  id->iob = 1;
+  id->activity = 0.01;
+  id->bolussnooze = 0;
+  return determine_basal(*gs, currenttemp, id, *profile, *autosens, *meal_data, APS_tempBasalFunctions, 1);
 }
 void setup() {
-  InitInsulinPump();
-  InitCGM();
+//  InitInsulinPump();
+// InitCGM();
+Serial.begin(9600);
+pinMode(LED_BUILTIN, OUTPUT);
 }
 void loop() {
-  currenttemp = ReadDataFromCGM(&glucose_status, &iob_data, currenttemp);
-  SendCommandToPump(currenttemp, profile);
-  delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
+/* Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, *currenttemp);
+  free(currenttemp);
+  memmove(currenttemp, &newTemp, sizeof(Temp));
+  SendCommandToPump(*currenttemp, *profile);
+//  delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
+*/
+Serial.print("apple");
+digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
+  delay(1000);                      // wait for a second
+  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
+  delay(1000);   
 }
 
