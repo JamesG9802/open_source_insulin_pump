@@ -13,6 +13,8 @@
 #include "APS_basal-set-temp.h"
 #include "APS_round-basal.h"
 
+#include "APS_LoadTestCase.h"
+
 /*  APS Button Pins for Arduino NANO 33 IoT */
 
 #define SERIAL_TRANSMITTER 0
@@ -194,10 +196,11 @@ void SendCommandToPump(Temp temp, Profile userProfile) {
 void InitCGM()  {
    Serial.begin(9600);
 }
-Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp currenttemp) {
+Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp* currenttemp) {
   /* Example test case #26: should high-temp when high and falling slower than BGI 
     Expected output of rate > 1 && duration > 30
   */
+  /*
   gs->delta = -1;
   gs->glucose = 175;
   gs->long_avgdelta = -1;
@@ -205,7 +208,11 @@ Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp currenttemp) {
   id->iob = 1;
   id->activity = 0.01;
   id->bolussnooze = 0;
-  return determine_basal(*gs, currenttemp, id, *profile, *autosens, *meal_data, APS_tempBasalFunctions, 1);
+  */
+
+  //  Demo for today  Demo test cases from [0, 10] exclusive
+  LoadTestCase(gs, id, currenttemp, 0);
+  return determine_basal(*gs, *currenttemp, id, *profile, *autosens, *meal_data, APS_tempBasalFunctions, 1);
 }
 void setup() {
   InitInsulinPump();
@@ -213,7 +220,7 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 }
 void loop() {
-  Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, *currenttemp);
+  Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, currenttemp);
   
   /*  Clean up Temp so that it doesn't cause a memory leak  */
   Destroy_Temp(currenttemp);
