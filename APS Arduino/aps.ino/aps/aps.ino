@@ -41,6 +41,7 @@ Meal_Data* meal_data;
 //  Current Insulin Rates
 Temp* currenttemp;
 
+int loopcount;
 
 /*  Initialize communication with Insulin Pump  */
 void InitInsulinPump()  {
@@ -201,12 +202,13 @@ void SendCommandToPump(Temp temp, Profile userProfile) {
 void InitCGM()  {
    Serial.begin(9600);
 }
+
 Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp currenttemp) {
   /* Example test case #26: should high-temp when high and falling slower than BGI 
     Expected output of rate > 1 && duration > 30
   */
   gs->delta = -1;
-  gs->glucose = 175;
+  gs->glucose = switchCharacteristic.value();
   gs->long_avgdelta = -1;
   gs->short_avgdelta = -1;
   id->iob = 1;
@@ -214,6 +216,7 @@ Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp currenttemp) {
   id->bolussnooze = 0;
   return determine_basal(*gs, currenttemp, id, *profile, *autosens, *meal_data, APS_tempBasalFunctions, 1);
 }
+
 void setup() {
   InitInsulinPump();
   InitCGM();
@@ -226,7 +229,7 @@ void setup() {
   }
 
   BLE.setLocalName("Arduino openAPS");
-  BLE.setAdvertsisedService(CGMData);
+  BLE.setAdvertisedService(CGMData);
 
   CGMData.addCharacteristic(switchCharacteristic);
 
@@ -236,6 +239,7 @@ void setup() {
 
   BLE.advertise();
 
+  loopcount = 0;
 
 }
 void loop() {
@@ -248,7 +252,47 @@ void loop() {
 
     while (central.connected()) {
       if (switchCharacteristic.written()){
-        if (switchCh)
+          
+          Serial.print("\n-------------------------\n");
+          Serial.print("LOOP::  ");
+          Serial.println(loopcount);
+          Serial.print("Glucose should be :");
+          Serial.print(switchCharacteristic.value());
+
+          Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, *currenttemp);
+
+          Serial.print("\nAnd is: ");
+          Serial.print(glucose_status->glucose);
+          Serial.print("\n----\n");
+          
+          /*  Clean up Temp so that it doesn't cause a memory leak  */
+          Destroy_Temp(currenttemp);
+          
+          /*  Setting currenttemp to new dosage values  */
+          memmove(currenttemp, &newTemp, sizeof(Temp));
+          
+          /*  Delivering message to pump  */
+          SendCommandToPump(*currenttemp, *profile);
+
+          //  delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
+          
+          /*  Reduce currenttemp's duration by 5 minutes due to time passage  */
+          if(currenttemp->duration)
+            currenttemp->duration -= INSULIN_INTERVAL / 1000 / 60;
+
+          /*  Set currenttemp's duration to 0 if negative */
+          if(!isnan(currenttemp->duration) && currenttemp->duration < 0)
+            currenttemp->duration = 0;
+
+
+          Serial.println("\n   ::LOOP     ");
+          loopcount++;
+
+          digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
+          delay(100);                      // wait for a second
+          digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
+
+        
       }
     }
   }
@@ -274,8 +318,7 @@ void loop() {
     currenttemp->duration = 0;
   Serial.println("\nLOOP:     ");
   digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
-  delay(1000);                      // wait for a second
+  delay(100);                      // wait for a second
   digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
-  delay(1000);   
 }
 
