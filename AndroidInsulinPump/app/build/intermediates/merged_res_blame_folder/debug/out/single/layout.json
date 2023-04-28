@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\lorenzo\\.gradle\\daemon\\7.5\\com.example.androidinsulinpump.app-mergeDebugResources-43:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\lorenzo\\.gradle\\daemon\\7.5\\com.example.androidinsulinpump.app-main-46:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\lorenzo\\.gradle\\daemon\\7.5\\com.example.androidinsulinpump.app-mergeDebugResources-43:\\layout\\fragment_second.xml",
+        "source": "C:\\Users\\lorenzo\\.gradle\\daemon\\7.5\\com.example.androidinsulinpump.app-main-46:\\layout\\fragment_second.xml"
+    },
+    {
+        "merged": "C:\\Users\\lorenzo\\.gradle\\daemon\\7.5\\com.example.androidinsulinpump.app-mergeDebugResources-43:\\layout\\fragment_third.xml",
+        "source": "C:\\Users\\lorenzo\\.gradle\\daemon\\7.5\\com.example.androidinsulinpump.app-main-46:\\layout\\fragment_third.xml"
+    },
+    {
+        "merged": "C:\\Users\\lorenzo\\.gradle\\daemon\\7.5\\com.example.androidinsulinpump.app-mergeDebugResources-43:\\layout\\fragment_first.xml",
+        "source": "C:\\Users\\lorenzo\\.gradle\\daemon\\7.5\\com.example.androidinsulinpump.app-main-46:\\layout\\fragment_first.xml"
+    },
+    {
+        "merged": "C:\\Users\\lorenzo\\.gradle\\daemon\\7.5\\com.example.androidinsulinpump.app-mergeDebugResources-43:\\layout\\content_main.xml",
+        "source": "C:\\Users\\lorenzo\\.gradle\\daemon\\7.5\\com.example.androidinsulinpump.app-main-46:\\layout\\content_main.xml"
+    },
+    {
+        "merged": "com.example.androidinsulinpump.app-mergeDebugResources-43:/layout/fragment_first.xml",
+        "source": "com.example.androidinsulinpump.app-main-46:/layout/fragment_first.xml"
+    }
+]

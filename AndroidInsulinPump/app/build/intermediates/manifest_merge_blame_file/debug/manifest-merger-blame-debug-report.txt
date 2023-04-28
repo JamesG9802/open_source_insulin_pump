@@ -1,0 +1,103 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.androidinsulinpump"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+8-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml
+10
+11    <permission
+11-->[androidx.core:core:1.9.0] C:\Users\lorenzo\.gradle\caches\transforms-3\a4522fe6b275a4534bfc0eadc1a8e0f8\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+12        android:name="com.example.androidinsulinpump.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+12-->[androidx.core:core:1.9.0] C:\Users\lorenzo\.gradle\caches\transforms-3\a4522fe6b275a4534bfc0eadc1a8e0f8\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+13        android:protectionLevel="signature" />
+13-->[androidx.core:core:1.9.0] C:\Users\lorenzo\.gradle\caches\transforms-3\a4522fe6b275a4534bfc0eadc1a8e0f8\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+14
+15    <uses-permission android:name="com.example.androidinsulinpump.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+15-->[androidx.core:core:1.9.0] C:\Users\lorenzo\.gradle\caches\transforms-3\a4522fe6b275a4534bfc0eadc1a8e0f8\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+15-->[androidx.core:core:1.9.0] C:\Users\lorenzo\.gradle\caches\transforms-3\a4522fe6b275a4534bfc0eadc1a8e0f8\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+16
+17    <application
+17-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:5:5-25:19
+18        android:allowBackup="true"
+18-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:6:9-35
+19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+19-->[androidx.core:core:1.9.0] C:\Users\lorenzo\.gradle\caches\transforms-3\a4522fe6b275a4534bfc0eadc1a8e0f8\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+20        android:dataExtractionRules="@xml/data_extraction_rules"
+20-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:7:9-65
+21        android:debuggable="true"
+22        android:extractNativeLibs="false"
+23        android:fullBackupContent="@xml/backup_rules"
+23-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:8:9-54
+24        android:icon="@mipmap/ic_launcher"
+24-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:9:9-43
+25        android:label="@string/app_name"
+25-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:10:9-41
+26        android:supportsRtl="true"
+26-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:11:9-35
+27        android:testOnly="true"
+28        android:theme="@style/Theme.AndroidInsulinPump" >
+28-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:12:9-56
+29        <activity
+29-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:14:9-24:20
+30            android:name="com.example.androidinsulinpump.MainActivity"
+30-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:15:13-41
+31            android:exported="true"
+31-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:16:13-36
+32            android:label="@string/app_name"
+32-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:17:13-45
+33            android:theme="@style/Theme.AndroidInsulinPump.NoActionBar" >
+33-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:18:13-72
+34            <intent-filter>
+34-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:19:13-23:29
+35                <action android:name="android.intent.action.MAIN" />
+35-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:20:17-69
+35-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:20:25-66
+36
+37                <category android:name="android.intent.category.LAUNCHER" />
+37-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:22:17-77
+37-->C:\Users\lorenzo\Documents\GitHub\open_source_insulin_pump\AndroidInsulinPump\app\src\main\AndroidManifest.xml:22:27-74
+38            </intent-filter>
+39        </activity>
+40
+41        <uses-library
+41-->[androidx.window:window:1.0.0] C:\Users\lorenzo\.gradle\caches\transforms-3\c3b734b042e3e1a43ac97bcab800c2b5\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
+42            android:name="androidx.window.extensions"
+42-->[androidx.window:window:1.0.0] C:\Users\lorenzo\.gradle\caches\transforms-3\c3b734b042e3e1a43ac97bcab800c2b5\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
+43            android:required="false" />
+43-->[androidx.window:window:1.0.0] C:\Users\lorenzo\.gradle\caches\transforms-3\c3b734b042e3e1a43ac97bcab800c2b5\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+44        <uses-library
+44-->[androidx.window:window:1.0.0] C:\Users\lorenzo\.gradle\caches\transforms-3\c3b734b042e3e1a43ac97bcab800c2b5\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
+45            android:name="androidx.window.sidecar"
+45-->[androidx.window:window:1.0.0] C:\Users\lorenzo\.gradle\caches\transforms-3\c3b734b042e3e1a43ac97bcab800c2b5\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+46            android:required="false" />
+46-->[androidx.window:window:1.0.0] C:\Users\lorenzo\.gradle\caches\transforms-3\c3b734b042e3e1a43ac97bcab800c2b5\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
+47
+48        <provider
+48-->[androidx.emoji2:emoji2:1.2.0] C:\Users\lorenzo\.gradle\caches\transforms-3\c41b4469453a8a9f9613e5cbc1cd1923\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+49            android:name="androidx.startup.InitializationProvider"
+49-->[androidx.emoji2:emoji2:1.2.0] C:\Users\lorenzo\.gradle\caches\transforms-3\c41b4469453a8a9f9613e5cbc1cd1923\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+50            android:authorities="com.example.androidinsulinpump.androidx-startup"
+50-->[androidx.emoji2:emoji2:1.2.0] C:\Users\lorenzo\.gradle\caches\transforms-3\c41b4469453a8a9f9613e5cbc1cd1923\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+51            android:exported="false" >
+51-->[androidx.emoji2:emoji2:1.2.0] C:\Users\lorenzo\.gradle\caches\transforms-3\c41b4469453a8a9f9613e5cbc1cd1923\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+52            <meta-data
+52-->[androidx.emoji2:emoji2:1.2.0] C:\Users\lorenzo\.gradle\caches\transforms-3\c41b4469453a8a9f9613e5cbc1cd1923\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+53                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+53-->[androidx.emoji2:emoji2:1.2.0] C:\Users\lorenzo\.gradle\caches\transforms-3\c41b4469453a8a9f9613e5cbc1cd1923\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+54                android:value="androidx.startup" />
+54-->[androidx.emoji2:emoji2:1.2.0] C:\Users\lorenzo\.gradle\caches\transforms-3\c41b4469453a8a9f9613e5cbc1cd1923\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+55            <meta-data
+55-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\lorenzo\.gradle\caches\transforms-3\528f10946969151ddeecc9c08cbfcbae\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+56                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+56-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\lorenzo\.gradle\caches\transforms-3\528f10946969151ddeecc9c08cbfcbae\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+57                android:value="androidx.startup" />
+57-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\lorenzo\.gradle\caches\transforms-3\528f10946969151ddeecc9c08cbfcbae\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+58        </provider>
+59    </application>
+60
+61</manifest>
