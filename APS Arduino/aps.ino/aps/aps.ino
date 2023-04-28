@@ -210,7 +210,7 @@ Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp currenttemp) {
     Expected output of rate > 1 && duration > 30
   */
   gs->delta = -1;
-  gs->glucose = switchCharacteristic.value();
+  gs->glucose = 115;
   gs->long_avgdelta = -1;
   gs->short_avgdelta = -1;
   id->iob = 1;
@@ -301,7 +301,7 @@ void loop() {
 
     while (central.connected()) {
       if (switchCharacteristic.written()){
-          Serial.print(switchCharacteristic.value());
+          glucose_status->glucose = switchCharacteristic.value();
       }
       tryInsulinLogic();
     }
