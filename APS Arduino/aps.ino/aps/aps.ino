@@ -36,6 +36,8 @@ Meal_Data* meal_data;
 //  Current Insulin Rates
 Temp* currenttemp;
 
+int loopcount;
+
 
 /*  Initialize communication with Insulin Pump  */
 void InitInsulinPump()  {
@@ -211,15 +213,18 @@ Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp* currenttemp) {
   */
 
   //  Demo for today  Demo test cases from [0, 10] exclusive
-  LoadTestCase(gs, id, currenttemp, 0);
+  LoadTestCase(gs, id, currenttemp, loopcount%11);
   return determine_basal(*gs, *currenttemp, id, *profile, *autosens, *meal_data, APS_tempBasalFunctions, 1);
 }
 void setup() {
   InitInsulinPump();
   InitCGM();
   pinMode(LED_BUILTIN, OUTPUT);
+  loopcount = 0;
 }
 void loop() {
+  Serial.print("\n-------------------------\nLOOP:: ");
+  Serial.println(loopcount);
   Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, currenttemp);
   
   /*  Clean up Temp so that it doesn't cause a memory leak  */
@@ -240,7 +245,8 @@ void loop() {
   /*  Set currenttemp's duration to 0 if negative */
   if(!isnan(currenttemp->duration) && currenttemp->duration < 0)
     currenttemp->duration = 0;
-  Serial.println("\nLOOP:     ");
+  Serial.println("\n ::LOOP     ");
+  loopcount++;
   digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
   delay(1000);                      // wait for a second
   digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
