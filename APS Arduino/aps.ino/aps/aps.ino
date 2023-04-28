@@ -28,6 +28,8 @@
 // BLE settings
 BLEService CGMData("180A");
 BLEByteCharacteristic switchCharacteristic("2A57", BLERead | BLEWrite);
+BLEByteCharacteristic aCharacteristic("a characteristic", BLERead | BLEWrite);
+BLEByteCharacteristic bCharacteristic("b Characteristic", BLERead | BLEWrite);
 
 //  CGM varaibles
 Glucose_Status* glucose_status;
@@ -232,10 +234,14 @@ void setup() {
   BLE.setAdvertisedService(CGMData);
 
   CGMData.addCharacteristic(switchCharacteristic);
+  CGMData.addCharacteristic(aCharacteristic);
+  CGMData.addCharacteristic(bCharacteristic);
 
   BLE.addService(CGMData);
 
   switchCharacteristic.writeValue(0);
+  aCharacteristic.writeValue(0);
+  bCharacteristic.writeValue(0);
 
   BLE.advertise();
 
