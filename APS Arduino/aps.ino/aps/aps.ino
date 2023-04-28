@@ -214,10 +214,25 @@ void setup() {
 }
 void loop() {
   Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, *currenttemp);
+  
+  /*  Clean up Temp so that it doesn't cause a memory leak  */
+  Destroy_Temp(currenttemp);
+  
+  /*  Setting currenttemp to new dosage values  */
   memmove(currenttemp, &newTemp, sizeof(Temp));
+  
+  /*  Delivering message to pump  */
   SendCommandToPump(*currenttemp, *profile);
-  //  delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
 
+  //  delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
+  
+  /*  Reduce currenttemp's duration by 5 minutes due to time passage  */
+  if(currenttemp->duration)
+    currenttemp->duration -= INSULIN_INTERVAL / 1000 / 60;
+
+  /*  Set currenttemp's duration to 0 if negative */
+  if(!isnan(currenttemp->duration) && currenttemp->duration < 0)
+    currenttemp->duration = 0;
   Serial.println("\nLOOP:     ");
   digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
   delay(1000);                      // wait for a second
