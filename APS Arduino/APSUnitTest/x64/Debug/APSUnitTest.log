@@ -1,29 +1,19 @@
-﻿  APS-round-basal.c
-  APSList.c
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APSList.c(9,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APSList.c(40,25): warning C4018: '>': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APSList.c(51,25): warning C4018: '>=': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APSList.c(54,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APSList.c(65,16): warning C4018: '<': signed/unsigned mismatch
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APSList.c(75,11): warning C4018: '<': signed/unsigned mismatch
-  APS_basal-set-temp.c
-  APS_Logic.c
-  APS_UnitTest.c
+﻿  APS_UnitTest.c
 C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(173,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(212,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(350,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(377,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(404,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(583,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(610,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(679,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(706,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(733,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(821,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(841,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(917,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1071,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1090,28): warning C4090: 'function': different 'const' qualifiers
-C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1114,28): warning C4090: 'function': different 'const' qualifiers
-  Generating Code...
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(214,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(358,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(386,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(414,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(601,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(629,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(701,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(729,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(757,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(849,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(870,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(949,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1109,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1129,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1154,28): warning C4090: 'function': different 'const' qualifiers
+C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\APS_UnitTest.c(1182): warning C4716: 'startTest': must return a value
   APSUnitTest.vcxproj -> C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\APSUnitTest\x64\Debug\APSUnitTest.exe

@@ -68,5 +68,8 @@
     <ClCompile Include="..\CUnitTest\APS-round-basal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\CUnitTest\APS_Temperature.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

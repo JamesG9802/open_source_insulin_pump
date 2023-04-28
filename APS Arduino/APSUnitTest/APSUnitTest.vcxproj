@@ -148,6 +148,7 @@
     <ClCompile Include="..\CUnitTest\APSList.c" />
     <ClCompile Include="..\CUnitTest\APS_basal-set-temp.c" />
     <ClCompile Include="..\CUnitTest\APS_Logic.c" />
+    <ClCompile Include="..\CUnitTest\APS_Temperature.c" />
     <ClCompile Include="..\CUnitTest\APS_UnitTest.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

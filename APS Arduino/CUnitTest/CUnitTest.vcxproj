@@ -131,6 +131,7 @@
     <ClCompile Include="APSList.c" />
     <ClCompile Include="APS_basal-set-temp.c" />
     <ClCompile Include="APS_Logic.c" />
+    <ClCompile Include="APS_Temperature.c" />
     <ClCompile Include="ArduinoUnitTest.c" />
     <ClCompile Include="Arduino.c" />
     <ClCompile Include="TestLibrary.c" />

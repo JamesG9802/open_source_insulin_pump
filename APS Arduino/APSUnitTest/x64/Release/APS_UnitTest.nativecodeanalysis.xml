@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\</FILEPATH>
+      <FILENAME>APS_UnitTest.c</FILENAME>
+      <LINE>117</LINE>
+      <COLUMN>4</COLUMN>
+    </SFA>
+    <DEFECTCODE>6262</DEFECTCODE>
+    <DESCRIPTION>Function uses '107864' bytes of stack.  Consider moving some data to heap.</DESCRIPTION>
+    <FUNCTION>test_determine_basal</FUNCTION>
+    <DECORATED>test_determine_basal</DECORATED>
+    <FUNCLINE>117</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

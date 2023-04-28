@@ -36,6 +36,9 @@
     <ClCompile Include="APS_basal-set-temp.c">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="APS_Temperature.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arduino.h">
