@@ -1,0 +1,311 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:2:1-47:12
+MERGED from [com.google.android.material:material:1.5.0] C:\Users\Misiek\.gradle\caches\transforms-3\b79e00459b51debe71c70b38b92dedee\transformed\material-1.5.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Misiek\.gradle\caches\transforms-3\1b1fc35cfff048765e7b5057facd7433\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\Misiek\.gradle\caches\transforms-3\a3b3964855112576846b464329822fa9\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\Misiek\.gradle\caches\transforms-3\7ba610368285ef737a15a687544ee720\transformed\appcompat-1.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\71a4b2e3b83f674b0802282a6bb1640f\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\Misiek\.gradle\caches\transforms-3\c7fdf132750f580e9799a5455b4a5c84\transformed\fragment-1.3.6\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.6.0] C:\Users\Misiek\.gradle\caches\transforms-3\ea9480b242a8da7b5cc4e7169919a500\transformed\activity-1.6.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\181c671d8ed9f4ee83ef37b69e89373c\transformed\emoji2-views-helper-1.2.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\0fef484d2d7d3612c69865f977f8c08f\transformed\emoji2-1.2.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\169fbc0cc288bcafd707ff1de5b5d1ef\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\602e0f40a2e4890a6c140b4e0e9297aa\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\1e7ff98370262fd019b8413a0f6844b9\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\f550c9bc53f117cb9e3852beae837a10\transformed\transition-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\1104968edb0b42381aa947d109a888c3\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\aa88bda1a69cb79a57f5c91edf6bd497\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\5532b3cbec1601c01b6235de990717a7\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\546d4bc68ec85a8120517b15b62dc38b\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\Misiek\.gradle\caches\transforms-3\53cbd816d1f0ce2619bbae9b8dcd2d8b\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\Misiek\.gradle\caches\transforms-3\8f16d121777a75a4f1908d2da158f029\transformed\lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core-ktx:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\559d9211b8a4d26fbbdc8406e973d69c\transformed\core-ktx-1.9.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\c2eb6369fb666d8c17cdcf42896777fe\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\9a156e10bc2cc6926719f38d9612f7be\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\6c503aea2c1db1c79b614b9556ccbfa8\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\fd7b603704272d08423d2d37fee5ab16\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Misiek\.gradle\caches\transforms-3\ae3e8265de2d7f874c642be745cd48da\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:17:1-37:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\Misiek\.gradle\caches\transforms-3\f1cbfa66c793c84195ed08fdc711e3af\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\133132b7aa11abb90dffc4aeb4ffee71\transformed\savedstate-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\7653a5192b1a36a00121994a24b4bb76\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\477190d2df3a2de3c97d15da98c0d16e\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\b98f6027b82a62ed04f6555726901b14\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\dd7137ffd950b411d610e9f27805e631\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\8e2aa67f29fd3f00654f3c85c161f1ef\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\Misiek\.gradle\caches\transforms-3\39a903a6a5736151d5c8c6b114f3352a\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\386058fc632ad8bf8b6baf681297c7c3\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\3894e5f58ab393766c3f47283285615c\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\3217a7b58a8fc6c763799ee115ae35b1\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\e955da626a3fb0b49faa6dcf12a4f6a2\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\e15e0c47fb3dde4d9ec9696347094b31\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Misiek\.gradle\caches\transforms-3\5db8ee51bbecc36e07eba7a77a7ae7c4\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:2:1-47:12
+	package
+		INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:2:1-47:12
+		INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:2:1-47:12
+		INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:2:1-47:12
+		INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.BLUETOOTH
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:6:5-7:38
+	android:maxSdkVersion
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:7:9-35
+	android:name
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:6:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:8:5-9:38
+	android:maxSdkVersion
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:9:9-35
+	android:name
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:8:22-71
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:10:5-11:38
+	android:maxSdkVersion
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:11:9-35
+	android:name
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:10:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:12:5-13:38
+	android:maxSdkVersion
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:13:9-35
+	android:name
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:12:22-76
+uses-permission#android.permission.BLUETOOTH_SCAN
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:14:5-16:31
+	android:usesPermissionFlags
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:15:9-55
+	tools:targetApi
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:16:9-28
+	android:name
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:14:22-70
+uses-permission#android.permission.BLUETOOTH_CONNECT
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:17:5-76
+	android:name
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:17:22-73
+uses-feature#android.hardware.bluetooth_le
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:18:5-91
+	android:required
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:18:65-88
+	android:name
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:18:19-63
+application
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:20:5-45:19
+MERGED from [com.google.android.material:material:1.5.0] C:\Users\Misiek\.gradle\caches\transforms-3\b79e00459b51debe71c70b38b92dedee\transformed\material-1.5.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.5.0] C:\Users\Misiek\.gradle\caches\transforms-3\b79e00459b51debe71c70b38b92dedee\transformed\material-1.5.0\AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Misiek\.gradle\caches\transforms-3\1b1fc35cfff048765e7b5057facd7433\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Misiek\.gradle\caches\transforms-3\1b1fc35cfff048765e7b5057facd7433\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\0fef484d2d7d3612c69865f977f8c08f\transformed\emoji2-1.2.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\0fef484d2d7d3612c69865f977f8c08f\transformed\emoji2-1.2.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Misiek\.gradle\caches\transforms-3\ae3e8265de2d7f874c642be745cd48da\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Misiek\.gradle\caches\transforms-3\ae3e8265de2d7f874c642be745cd48da\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\477190d2df3a2de3c97d15da98c0d16e\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\477190d2df3a2de3c97d15da98c0d16e\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\dd7137ffd950b411d610e9f27805e631\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\dd7137ffd950b411d610e9f27805e631\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:27:9-35
+	android:label
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:25:9-41
+	android:fullBackupContent
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:23:9-54
+	android:roundIcon
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:26:9-54
+	tools:targetApi
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:29:9-29
+	android:icon
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:24:9-43
+	android:allowBackup
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:21:9-35
+	android:theme
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:28:9-48
+	android:dataExtractionRules
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:22:9-65
+activity#njitinsulin.insulinapp.ProfileDataActivity
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:30:9-32:40
+	android:exported
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:32:13-37
+	android:name
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:31:13-48
+activity#njitinsulin.insulinapp.MealDataActivity
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:33:9-35:40
+	android:exported
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:35:13-37
+	android:name
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:34:13-45
+activity#njitinsulin.insulinapp.MainActivity
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:36:9-44:20
+	android:exported
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:38:13-36
+	android:name
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:37:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:39:13-43:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:40:17-69
+	android:name
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:40:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:42:17-77
+	android:name
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml:42:27-74
+uses-sdk
+INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.5.0] C:\Users\Misiek\.gradle\caches\transforms-3\b79e00459b51debe71c70b38b92dedee\transformed\material-1.5.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.5.0] C:\Users\Misiek\.gradle\caches\transforms-3\b79e00459b51debe71c70b38b92dedee\transformed\material-1.5.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Misiek\.gradle\caches\transforms-3\1b1fc35cfff048765e7b5057facd7433\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Misiek\.gradle\caches\transforms-3\1b1fc35cfff048765e7b5057facd7433\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\Misiek\.gradle\caches\transforms-3\a3b3964855112576846b464329822fa9\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\Misiek\.gradle\caches\transforms-3\a3b3964855112576846b464329822fa9\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\Misiek\.gradle\caches\transforms-3\7ba610368285ef737a15a687544ee720\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\Misiek\.gradle\caches\transforms-3\7ba610368285ef737a15a687544ee720\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\71a4b2e3b83f674b0802282a6bb1640f\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\71a4b2e3b83f674b0802282a6bb1640f\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\Misiek\.gradle\caches\transforms-3\c7fdf132750f580e9799a5455b4a5c84\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\Misiek\.gradle\caches\transforms-3\c7fdf132750f580e9799a5455b4a5c84\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.6.0] C:\Users\Misiek\.gradle\caches\transforms-3\ea9480b242a8da7b5cc4e7169919a500\transformed\activity-1.6.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.6.0] C:\Users\Misiek\.gradle\caches\transforms-3\ea9480b242a8da7b5cc4e7169919a500\transformed\activity-1.6.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\181c671d8ed9f4ee83ef37b69e89373c\transformed\emoji2-views-helper-1.2.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\181c671d8ed9f4ee83ef37b69e89373c\transformed\emoji2-views-helper-1.2.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\0fef484d2d7d3612c69865f977f8c08f\transformed\emoji2-1.2.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\0fef484d2d7d3612c69865f977f8c08f\transformed\emoji2-1.2.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\169fbc0cc288bcafd707ff1de5b5d1ef\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\169fbc0cc288bcafd707ff1de5b5d1ef\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\602e0f40a2e4890a6c140b4e0e9297aa\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\602e0f40a2e4890a6c140b4e0e9297aa\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\1e7ff98370262fd019b8413a0f6844b9\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\1e7ff98370262fd019b8413a0f6844b9\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\f550c9bc53f117cb9e3852beae837a10\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\f550c9bc53f117cb9e3852beae837a10\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\1104968edb0b42381aa947d109a888c3\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\1104968edb0b42381aa947d109a888c3\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\aa88bda1a69cb79a57f5c91edf6bd497\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\aa88bda1a69cb79a57f5c91edf6bd497\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\5532b3cbec1601c01b6235de990717a7\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\5532b3cbec1601c01b6235de990717a7\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\546d4bc68ec85a8120517b15b62dc38b\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\546d4bc68ec85a8120517b15b62dc38b\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\Misiek\.gradle\caches\transforms-3\53cbd816d1f0ce2619bbae9b8dcd2d8b\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\Misiek\.gradle\caches\transforms-3\53cbd816d1f0ce2619bbae9b8dcd2d8b\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\Misiek\.gradle\caches\transforms-3\8f16d121777a75a4f1908d2da158f029\transformed\lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\Misiek\.gradle\caches\transforms-3\8f16d121777a75a4f1908d2da158f029\transformed\lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core-ktx:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\559d9211b8a4d26fbbdc8406e973d69c\transformed\core-ktx-1.9.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\559d9211b8a4d26fbbdc8406e973d69c\transformed\core-ktx-1.9.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\c2eb6369fb666d8c17cdcf42896777fe\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\c2eb6369fb666d8c17cdcf42896777fe\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\9a156e10bc2cc6926719f38d9612f7be\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\9a156e10bc2cc6926719f38d9612f7be\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\6c503aea2c1db1c79b614b9556ccbfa8\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\6c503aea2c1db1c79b614b9556ccbfa8\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\fd7b603704272d08423d2d37fee5ab16\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\fd7b603704272d08423d2d37fee5ab16\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Misiek\.gradle\caches\transforms-3\ae3e8265de2d7f874c642be745cd48da\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Misiek\.gradle\caches\transforms-3\ae3e8265de2d7f874c642be745cd48da\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\Misiek\.gradle\caches\transforms-3\f1cbfa66c793c84195ed08fdc711e3af\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\Misiek\.gradle\caches\transforms-3\f1cbfa66c793c84195ed08fdc711e3af\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\133132b7aa11abb90dffc4aeb4ffee71\transformed\savedstate-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\133132b7aa11abb90dffc4aeb4ffee71\transformed\savedstate-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\7653a5192b1a36a00121994a24b4bb76\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\7653a5192b1a36a00121994a24b4bb76\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\477190d2df3a2de3c97d15da98c0d16e\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\477190d2df3a2de3c97d15da98c0d16e\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\b98f6027b82a62ed04f6555726901b14\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\b98f6027b82a62ed04f6555726901b14\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\dd7137ffd950b411d610e9f27805e631\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\dd7137ffd950b411d610e9f27805e631\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\8e2aa67f29fd3f00654f3c85c161f1ef\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\8e2aa67f29fd3f00654f3c85c161f1ef\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\Misiek\.gradle\caches\transforms-3\39a903a6a5736151d5c8c6b114f3352a\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\Misiek\.gradle\caches\transforms-3\39a903a6a5736151d5c8c6b114f3352a\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\386058fc632ad8bf8b6baf681297c7c3\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Misiek\.gradle\caches\transforms-3\386058fc632ad8bf8b6baf681297c7c3\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\3894e5f58ab393766c3f47283285615c\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\3894e5f58ab393766c3f47283285615c\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\3217a7b58a8fc6c763799ee115ae35b1\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\3217a7b58a8fc6c763799ee115ae35b1\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\e955da626a3fb0b49faa6dcf12a4f6a2\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\e955da626a3fb0b49faa6dcf12a4f6a2\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\e15e0c47fb3dde4d9ec9696347094b31\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Misiek\.gradle\caches\transforms-3\e15e0c47fb3dde4d9ec9696347094b31\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Misiek\.gradle\caches\transforms-3\5db8ee51bbecc36e07eba7a77a7ae7c4\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Misiek\.gradle\caches\transforms-3\5db8ee51bbecc36e07eba7a77a7ae7c4\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Misiek\Documents\Homework\GuidedDesign\open_source_insulin_pump\InsulinApp\app\src\main\AndroidManifest.xml
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\0fef484d2d7d3612c69865f977f8c08f\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Misiek\.gradle\caches\transforms-3\ae3e8265de2d7f874c642be745cd48da\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Misiek\.gradle\caches\transforms-3\ae3e8265de2d7f874c642be745cd48da\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\477190d2df3a2de3c97d15da98c0d16e\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Misiek\.gradle\caches\transforms-3\477190d2df3a2de3c97d15da98c0d16e\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\0fef484d2d7d3612c69865f977f8c08f\transformed\emoji2-1.2.0\AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\0fef484d2d7d3612c69865f977f8c08f\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\0fef484d2d7d3612c69865f977f8c08f\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\0fef484d2d7d3612c69865f977f8c08f\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\0fef484d2d7d3612c69865f977f8c08f\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\0fef484d2d7d3612c69865f977f8c08f\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Misiek\.gradle\caches\transforms-3\0fef484d2d7d3612c69865f977f8c08f\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+permission#njitinsulin.insulinapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+uses-permission#njitinsulin.insulinapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\Misiek\.gradle\caches\transforms-3\8c25e88eb4ea76e8f3d0900731d8ae12\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Misiek\.gradle\caches\transforms-3\ae3e8265de2d7f874c642be745cd48da\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Misiek\.gradle\caches\transforms-3\ae3e8265de2d7f874c642be745cd48da\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Misiek\.gradle\caches\transforms-3\ae3e8265de2d7f874c642be745cd48da\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78

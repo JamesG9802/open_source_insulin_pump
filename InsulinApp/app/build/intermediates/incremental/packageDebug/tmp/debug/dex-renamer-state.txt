@@ -1,0 +1,10 @@
+#Fri Apr 28 14:21:41 EDT 2023
+base.0=C\:\\Users\\Misiek\\Documents\\Homework\\GuidedDesign\\open_source_insulin_pump\\InsulinApp\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\Misiek\\Documents\\Homework\\GuidedDesign\\open_source_insulin_pump\\InsulinApp\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\Misiek\\Documents\\Homework\\GuidedDesign\\open_source_insulin_pump\\InsulinApp\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
+path.0=classes.dex
+path.1=0/classes.dex
+path.2=12/classes.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
+renamed.2=classes3.dex
