@@ -240,8 +240,51 @@ void setup() {
   BLE.advertise();
 
   loopcount = 0;
-  timeTillEvaluation = 0;
+  timeTillEvaluation = millis();
 }
+void tryInsulinLogic() {
+  if (millis() - timeTillEvaluation >= 1000)  {
+    Serial.print("\n-------------------------\n");
+    Serial.print("LOOP::  ");
+    Serial.println(loopcount);
+    Serial.print("Glucose should be :");
+
+    Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, *currenttemp);
+
+    Serial.print("\nAnd is: ");
+    Serial.print(glucose_status->glucose);
+    Serial.print("\n----\n");
+    
+    /*  Clean up Temp so that it doesn't cause a memory leak  */
+    Destroy_Temp(currenttemp);
+    
+    /*  Setting currenttemp to new dosage values  */
+    memmove(currenttemp, &newTemp, sizeof(Temp));
+    
+    /*  Delivering message to pump  */
+    SendCommandToPump(*currenttemp, *profile);
+    
+    /*  Reduce currenttemp's duration by 5 minutes due to time passage  */
+    if(currenttemp->duration)
+      currenttemp->duration -= INSULIN_INTERVAL / 1000 / 60;
+
+    /*  Set currenttemp's duration to 0 if negative */
+    if(!isnan(currenttemp->duration) && currenttemp->duration < 0)
+      currenttemp->duration = 0;
+
+
+    Serial.println("\n   ::LOOP     ");
+    loopcount++;
+
+    digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
+    delay(100);                      // wait for a second
+    digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
+
+    //  delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
+    //  timeTillEvaluation = INSULIN_INTERVAL;
+    timeTillEvaluation = millis();
+  }
+} 
 void loop() {
 
   BLEDevice central = BLE.central();
@@ -254,76 +297,9 @@ void loop() {
       if (switchCharacteristic.written()){
           Serial.print(switchCharacteristic.value());
       }
-      if (timeTillEvaluation <= 0)  {
-          Serial.print("\n-------------------------\n");
-          Serial.print("LOOP::  ");
-          Serial.println(loopcount);
-          Serial.print("Glucose should be :");
-
-          Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, *currenttemp);
-
-          Serial.print("\nAnd is: ");
-          Serial.print(glucose_status->glucose);
-          Serial.print("\n----\n");
-          
-          /*  Clean up Temp so that it doesn't cause a memory leak  */
-          Destroy_Temp(currenttemp);
-          
-          /*  Setting currenttemp to new dosage values  */
-          memmove(currenttemp, &newTemp, sizeof(Temp));
-          
-          /*  Delivering message to pump  */
-          SendCommandToPump(*currenttemp, *profile);
-          
-          /*  Reduce currenttemp's duration by 5 minutes due to time passage  */
-          if(currenttemp->duration)
-            currenttemp->duration -= INSULIN_INTERVAL / 1000 / 60;
-
-          /*  Set currenttemp's duration to 0 if negative */
-          if(!isnan(currenttemp->duration) && currenttemp->duration < 0)
-            currenttemp->duration = 0;
-
-
-          Serial.println("\n   ::LOOP     ");
-          loopcount++;
-
-          digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
-          delay(100);                      // wait for a second
-          digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
-  
-          //  delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
-          //  timeTillEvaluation = INSULIN_INTERVAL;
-          timeTillEvaluation = 1000;
-      }
+      tryInsulinLogic();
     }
   }
-  Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, *currenttemp);
-  
-  /*  Clean up Temp so that it doesn't cause a memory leak  */
-  Destroy_Temp(currenttemp);
-  
-  /*  Setting currenttemp to new dosage values  */
-  memmove(currenttemp, &newTemp, sizeof(Temp));
-  
-  /*  Delivering message to pump  */
-  SendCommandToPump(*currenttemp, *profile);
-  
-  /*  Reduce currenttemp's duration by 5 minutes due to time passage  */
-  if(currenttemp->duration)
-    currenttemp->duration -= INSULIN_INTERVAL / 1000 / 60;
-
-  /*  Set currenttemp's duration to 0 if negative */
-  if(!isnan(currenttemp->duration) && currenttemp->duration < 0)
-    currenttemp->duration = 0;
-  Serial.println("\nLOOP:     ");
-
-  digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
-  delay(100);                      // wait for a second
-  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
-
-  //  delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
-  //  timeTillEvaluation = INSULIN_INTERVAL;
-  timeTillEvaluation = 1000;
-  
+  tryInsulinLogic();
 }
 
