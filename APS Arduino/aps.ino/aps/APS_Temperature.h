@@ -3,7 +3,7 @@
 extern "C" {
 #endif
 #include "APS_Predictions.h"
-
+#include "APSList.h"
 #ifndef __cplusplus
 typedef struct APS_Temperature {
 #endif
@@ -13,8 +13,8 @@ struct Temp {
 	double duration;	//	invalid if NAN
 	double rate;		//	invalid if NAN
 	const char temp[128];
-	const char reason[4096];
-	const char error[4096];
+	const char reason[512];
+	const char error[256];
 	long long deliverAt;	//	milliseconds since unix epoch
 	long long date;			//	milliseconds since unix epoch
 	double bg;
@@ -46,6 +46,12 @@ Temp
 #endif
 ;
 
+/// <summary>
+/// To prevent a memory leak, you must call this on all Temp objects when finished. 
+/// Does not free temp as you can call this function on non heap allocated Temps.
+/// </summary>
+/// <param name="temp"></param>
+void Destroy_Temp(Temp* temp);
 #ifdef __cplusplus
 }
 #endif

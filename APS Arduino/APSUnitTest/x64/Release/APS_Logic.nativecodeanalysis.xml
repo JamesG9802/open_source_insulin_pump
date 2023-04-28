@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\</FILEPATH>
+      <FILENAME>APS_Logic.c</FILENAME>
+      <LINE>826</LINE>
+      <COLUMN>26</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>determine_basal</FUNCTION>
+    <DECORATED>determine_basal</DECORATED>
+    <FUNCLINE>178</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\</FILEPATH>
+      <FILENAME>APS_Logic.c</FILENAME>
+      <LINE>833</LINE>
+      <COLUMN>30</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>determine_basal</FUNCTION>
+    <DECORATED>determine_basal</DECORATED>
+    <FUNCLINE>178</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\</FILEPATH>
+      <FILENAME>APS_Logic.c</FILENAME>
+      <LINE>842</LINE>
+      <COLUMN>26</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>determine_basal</FUNCTION>
+    <DECORATED>determine_basal</DECORATED>
+    <FUNCLINE>178</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\james\Documents\GitHub\open_source_insulin_pump\APS Arduino\CUnitTest\</FILEPATH>
+      <FILENAME>APS_Logic.c</FILENAME>
+      <LINE>849</LINE>
+      <COLUMN>30</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>determine_basal</FUNCTION>
+    <DECORATED>determine_basal</DECORATED>
+    <FUNCLINE>178</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

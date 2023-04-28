@@ -57,7 +57,7 @@ Profile Create_Profile() {
 	profile.remainingCarbsFraction = 1;
 	profile.carbsReqThreshold = 1;
 	profile.dia = NAN;	//	nld
-	memset(profile.type, 0, sizeof(profile.type));	//	nld
+	memset((char*)profile.type, 0, sizeof(profile.type));	//	nld
 	return profile;
 }
 Glucose_Status Create_GlucoseStatus() {
@@ -241,7 +241,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 			minAgo, timeString);
 		*/
 		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
-			(const char* const)"If current system time is correct, then BG data is too old. The last BG data was read %.6lfm ago at ?",
+			(const char* const)"If current system time is correct, then BG data is too old. The last BG data was read ?m ago at %.6lf",
 			minAgo);
 		// if BG is too old/noisy, or is changing less than 1 mg/dL/5m for 45m, cancel any high temps and shorten any long zero temps
 	}
@@ -299,7 +299,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	double target_bg;
 	double min_bg;
 	double max_bg;
-//	double high_bg;	unreferenced in current implementation
+//	double high_bg;	unreferenced
 
 	if (!isnan(profile.min_bg)) {
 		min_bg = profile.min_bg;
@@ -527,9 +527,11 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 
 	//	Append == Push
 	double* fakeBG = malloc(sizeof(double));
+  double* fakeBG_Copy = malloc(sizeof(double));	//	lists cannot keep a copy of the same pointer or else double free error
 	*fakeBG = bg;
+  *fakeBG_Copy = bg;
 	List_Append(COBpredBGs, fakeBG);
-	List_Append(IOBpredBGs, fakeBG);
+	List_Append(IOBpredBGs, fakeBG_Copy);
 //	List_Append(UAMpredBGs, fakeBG);
 //	List_Append(ZTpredBGs, fakeBG);
 
@@ -638,8 +640,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	double eventualPredBG = bg;
 	double lastIOBpredBG;
 	double lastCOBpredBG = NAN;
-//	double lastUAMpredBG;	unreferenced in current implementation
-//	double lastZTpredBG;	unreferenced in current implementation
+//	double lastUAMpredBG;	unreferenced
+//	double lastZTpredBG;	unreferenced
 	double UAMduration = 0;
 	double remainingCItotal = 0;
 	List* remainingCIs = List_Create();
@@ -712,7 +714,7 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		for (unsigned int i = 0; i < COBpredBGs->length; i++) {
 			*((double*)COBpredBGs->elements[i]) = APS_round(min(401, max(39, *((double*)COBpredBGs->elements[i]))), 0);
 		}
-		for (long i = COBpredBGs->length - 1; i > 12; i--) {
+		for (unsigned long i = COBpredBGs->length - 1; i > 12; i--) {
 			if (COBpredBGs->elements[i - 1] != COBpredBGs->elements[i]) break;
 			else free(List_Pop(COBpredBGs));
 		}
@@ -791,12 +793,16 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 	rT.CR = APS_round(profile.carb_ratio, 2);
 	rT.target_bg = convert_bg(target_bg, profile);
 
+/*
+  char buffer[20];
+  dtostrf(rT.BGI, 8, 2, buffer);
+*/
+
 	snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
 		(const char* const)"COB: %.6lf, Dev: %.6lf, BGI: %.6lf, ISF: %.6lf, CR: %.6lf, minPredBG %.6lf, minGuardBG %.6lf, IOpredBG %.6lf"
 		, rT.COB, rT.deviation, rT.BGI, rT.ISF, rT.CR, convert_bg(minPredBG, profile), 
 		convert_bg(minGuardBG, profile), convert_bg(lastIOBpredBG, profile));
-	printf("\n\n:(\n");
-	if (lastCOBpredBG > 0) {
+	if (!isnan(lastCOBpredBG) && lastCOBpredBG > 0) {
 		snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason),
 			(const char* const)"%s, COBpredBG %.6lf"
 			,rT.reason, convert_bg(lastCOBpredBG, profile));
@@ -900,8 +906,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 		durationReq = min(120, max(30, durationReq));
 
 		//	NJIT - Prevent Memory Leak
-		if (rT.predBGs.COB != NULL)
-			for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+		if (rT.predBGs.COB == NULL)
+			{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 		for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 		for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 		return tempBasalFunctions.setTempBasal(0, durationReq, profile, rT, currenttemp);
@@ -919,8 +925,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				snprintf((char* const)(rT.reason), (const size_t)sizeof(rT.reason), (const char* const)"%s, naive_eventualBG < 40.",
 					rT.reason);
 				//	NJIT - Prevent Memory Leak
-				if (rT.predBGs.COB != NULL)
-					for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+				if (rT.predBGs.COB == NULL)
+					{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 				for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 				for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 				return tempBasalFunctions.setTempBasal(0, 30, profile, rT, currenttemp);
@@ -939,8 +945,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 					(const char* const)"%s, temp %.6lf ~ req %.6lfU/hr. ",
 					rT.reason, currenttemp.rate, basal);
 				//	NJIT - Prevent Memory Leak
-				if (rT.predBGs.COB != NULL)
-					for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+				if (rT.predBGs.COB == NULL)
+					{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 				for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 				for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 				return rT;
@@ -950,8 +956,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 					(const char* const)"%s; setting current basal of %.6lf as temp",
 					rT.reason, basal);
 				//	NJIT - Prevent Memory Leak
-				if (rT.predBGs.COB != NULL)
-					for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+				if (rT.predBGs.COB == NULL)
+					{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 				for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 				for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 				return tempBasalFunctions.setTempBasal(basal, 30, profile, rT, currenttemp);
@@ -985,8 +991,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				(const char* const)"%s, %.6lfm@ %.2lf is a lot less than needed. ",
 				rT.reason, currenttemp.duration, currenttemp.rate);
 			//	NJIT - Prevent Memory Leak
-			if (rT.predBGs.COB != NULL)
-				for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+			if (rT.predBGs.COB == NULL)
+				{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 			for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 			for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 			return tempBasalFunctions.setTempBasal(rate, 30, profile, rT, currenttemp);
@@ -996,8 +1002,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				(const char* const)"%s, temp %.6lf ~< req %.6lfU/hr. ",
 				rT.reason, currenttemp.rate, rate);
 			//	NJIT - Prevent Memory Leak
-			if (rT.predBGs.COB != NULL)
-				for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+			if (rT.predBGs.COB == NULL)
+				{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 			for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 			for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 			return rT;
@@ -1022,8 +1028,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 						(const char* const)"%s, setting %.6lfm zero temp. ",
 						rT.reason, durationReq);
 					//	NJIT - Prevent Memory Leak
-					if (rT.predBGs.COB != NULL)
-						for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+					if (rT.predBGs.COB == NULL)
+						{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 					for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 					for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 					return tempBasalFunctions.setTempBasal(rate, durationReq, profile, rT, currenttemp);
@@ -1035,8 +1041,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 					rT.reason, rate);
 			}
 			//	NJIT - Prevent Memory Leak
-			if (rT.predBGs.COB != NULL)
-				for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+			if (rT.predBGs.COB == NULL)
+				{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 			for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 			for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 			return tempBasalFunctions.setTempBasal(rate, 30, profile, rT, currenttemp);
@@ -1062,8 +1068,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				(const char* const)"%s, temp %.6lf ~ req %.6lf U/hr. ",
 				rT.reason, currenttemp.rate, basal);
 			//	NJIT - Prevent Memory Leak
-			if (rT.predBGs.COB != NULL)
-				for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+			if (rT.predBGs.COB == NULL)
+				{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 			for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 			for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 			return rT;
@@ -1073,8 +1079,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				(const char* const)"%s; setting current basal of %.6lf as temp. ",
 				rT.reason, basal);
 			//	NJIT - Prevent Memory Leak
-			if (rT.predBGs.COB != NULL)
-				for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+			if (rT.predBGs.COB == NULL)
+				{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 			for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 			for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 			return tempBasalFunctions.setTempBasal(basal, 30, profile, rT, currenttemp);
@@ -1090,8 +1096,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				(const char* const)"%s, temp %.6lf ~ req %.6lfU/hr",
 				rT.reason, currenttemp.rate, basal);
 			//	NJIT - Prevent Memory Leak
-			if (rT.predBGs.COB != NULL)
-				for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+			if (rT.predBGs.COB == NULL)
+				{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 			for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 			for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 			return rT;
@@ -1102,8 +1108,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				rT.reason, basal);
 
 			//	NJIT - Prevent Memory Leak
-			if (rT.predBGs.COB != NULL)
-				for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+			if (rT.predBGs.COB == NULL)
+				{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 			for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 			for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 			return tempBasalFunctions.setTempBasal(basal, 30, profile, rT, currenttemp);
@@ -1127,8 +1133,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				(const char* const)"%s, temp %.6lf ~ req %.6lfU.hr",
 				rT.reason, currenttemp.rate, basal);
 			//	NJIT - Prevent Memory Leak
-			if (rT.predBGs.COB != NULL)
-				for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+			if (rT.predBGs.COB == NULL)
+				{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 			for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 			for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 			return rT;
@@ -1138,8 +1144,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				(const char* const)"%s; setting current basal of %.6lf as temp. ",
 				rT.reason, basal);
 			//	NJIT - Prevent Memory Leak
-			if (rT.predBGs.COB != NULL)
-				for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+			if (rT.predBGs.COB == NULL)
+				{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 			for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 			for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 			return tempBasalFunctions.setTempBasal(basal, 30, profile, rT, currenttemp);
@@ -1187,8 +1193,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				(const char* const)"%s%.6lfm@%.2lf > 2 * insulinReq. Setting temp basal of %.6lfU/hr. ",
 				rT.reason, currenttemp.duration, currenttemp.rate, rate);
 			//	NJIT - Prevent Memory Leak
-			if (rT.predBGs.COB != NULL)
-				for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+			if (rT.predBGs.COB == NULL)
+				{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 			for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 			for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 			return tempBasalFunctions.setTempBasal(rate, 30, profile, rT, currenttemp);
@@ -1199,8 +1205,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				(const char* const)"%sno temp, setting %.6lfU.hr. ",
 				rT.reason, rate);
 			//	NJIT - Prevent Memory Leak
-			if (rT.predBGs.COB != NULL)
-				for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+			if (rT.predBGs.COB == NULL)
+				{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 			for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 			for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 			return tempBasalFunctions.setTempBasal(rate, 30, profile, rT, currenttemp);
@@ -1211,8 +1217,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 				(const char* const)"%stemp %.6lf >~ req %.6lfU/hr. ",
 				rT.reason, currenttemp.rate, rate);
 			//	NJIT - Prevent Memory Leak
-			if (rT.predBGs.COB != NULL)
-				for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+			if (rT.predBGs.COB == NULL)
+				{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 			for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 			for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 			return rT;
@@ -1223,8 +1229,8 @@ Temp determine_basal(Glucose_Status glucose_status, Temp currenttemp, IOB_Data* 
 			(const char* const)"%stemp %.6lf<%.6lfU/hr. ",
 			rT.reason, currenttemp.rate, rate);
 		//	NJIT - Prevent Memory Leak
-		if (rT.predBGs.COB != NULL)
-			for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs);
+		if (rT.predBGs.COB == NULL)
+			{ for (unsigned int i = 0; i < COBpredBGs->length; i++) free(COBpredBGs->elements[i]); List_Destroy(COBpredBGs); }
 		for (unsigned int i = 0; i < remainingCIs->length; i++) free(remainingCIs->elements[i]); List_Destroy(remainingCIs);
 		for (unsigned int i = 0; i < predCIs->length; i++) free(predCIs->elements[i]); List_Destroy(predCIs);
 		return tempBasalFunctions.setTempBasal(rate, 30, profile, rT, currenttemp);

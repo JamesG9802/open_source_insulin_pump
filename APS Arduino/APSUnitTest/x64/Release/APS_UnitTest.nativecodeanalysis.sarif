@@ -7,7 +7,7 @@
         {
           "ruleId": "C6262",
           "message": {
-            "text": "Function uses '16984' bytes of stack.  Consider moving some data to heap."
+            "text": "Function uses '107864' bytes of stack.  Consider moving some data to heap."
           },
           "locations": [
             {
@@ -16,38 +16,10 @@
                   "uri": "file:///C:/Users/james/Documents/GitHub/open_source_insulin_pump/APS Arduino/CUnitTest/APS_UnitTest.c"
                 },
                 "region": {
-                  "startLine": 86,
-                  "startColumn": 10,
-                  "endLine": 86,
-                  "endColumn": 10
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Create_IOB_Data",
-                  "decoratedName": "Create_IOB_Data",
-                  "kind": "function"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "ruleId": "C6262",
-          "message": {
-            "text": "Function uses '66328' bytes of stack.  Consider moving some data to heap."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/james/Documents/GitHub/open_source_insulin_pump/APS Arduino/CUnitTest/APS_UnitTest.c"
-                },
-                "region": {
-                  "startLine": 215,
-                  "startColumn": 6,
-                  "endLine": 215,
-                  "endColumn": 6
+                  "startLine": 117,
+                  "startColumn": 5,
+                  "endLine": 117,
+                  "endColumn": 5
                 }
               },
               "logicalLocations": [
@@ -84,7 +56,7 @@
             "resultFile"
           ],
           "hashes": {
-            "sha-256": "40248bcee54519a11f80fbd967f66924792e8d52be0cef0905740b5a411a2220"
+            "sha-256": "f8d981f91569ce680e417122754f2473fd05751b8706b3738688a773ed84e7f5"
           }
         },
         {
@@ -92,7 +64,7 @@
             "uri": "file:///c:/users/james/documents/github/open_source_insulin_pump/aps arduino/cunittest/aps_logic.h"
           },
           "hashes": {
-            "sha-256": "b6f77c00ec9c86d7a4aa5e07a279ee113dc14d127d59d5147f582f6b7f704a54"
+            "sha-256": "8adf4fc0e7304a7538635b7a9004339e9654bd98de3bf151237392b2037742e9"
           }
         },
         {
@@ -100,7 +72,7 @@
             "uri": "file:///c:/users/james/documents/github/open_source_insulin_pump/aps arduino/cunittest/aps_glucose_status.h"
           },
           "hashes": {
-            "sha-256": "365526e52ef07fa014e5ff2c258a25f8f911992d0595b84e0ecd6772a2c2d786"
+            "sha-256": "13e15a86e9e8925782f7b3b05bf1b91568b78cfb7e7246ca669b9ee641bb1e29"
           }
         },
         {
@@ -108,7 +80,7 @@
             "uri": "file:///c:/users/james/documents/github/open_source_insulin_pump/aps arduino/cunittest/aps_temperature.h"
           },
           "hashes": {
-            "sha-256": "4c30701bd86d30763193c7fbdb8d58fb1f29520f216440b5c8ad3ad21e1a1ffb"
+            "sha-256": "d9f6bab77b9a70a38c054b21992b284a2bf3b20dc4095ab013656cfb9daeba1d"
           }
         },
         {
@@ -124,7 +96,7 @@
             "uri": "file:///c:/users/james/documents/github/open_source_insulin_pump/aps arduino/cunittest/apslist.h"
           },
           "hashes": {
-            "sha-256": "fa639cee783e1e394a3099a906e33bb8b9fd9b32b098657af2595eff82f93c7e"
+            "sha-256": "dd46a316788357f5ee09717f8e5d2136495d9a6df628858aa03eebbd48e66933"
           }
         },
         {
@@ -132,7 +104,7 @@
             "uri": "file:///c:/users/james/documents/github/open_source_insulin_pump/aps arduino/cunittest/aps_iob_data.h"
           },
           "hashes": {
-            "sha-256": "c5ce5ef32aa8d0c2e4254ec13cd7dedf7c802d116606319c37fd4d38815d3064"
+            "sha-256": "2928d21d1de6084a789f6289e19823a3db457c330d3dcd12318d4ef0f9199cdb"
           }
         },
         {
@@ -156,7 +128,7 @@
             "uri": "file:///c:/users/james/documents/github/open_source_insulin_pump/aps arduino/cunittest/aps_meal_data.h"
           },
           "hashes": {
-            "sha-256": "fad0db3c2fedf69d7bac5810602119cf81b0966a8e1924ac334483fd06b77310"
+            "sha-256": "4b9241a4fa4a5c2390f5f62048a2964a3322415e969e416b752b7c4749d4279f"
           }
         },
         {

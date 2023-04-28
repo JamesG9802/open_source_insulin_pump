@@ -23,14 +23,14 @@ void List_Append(List* list, void* item);
 /// <param name="list"></param>
 /// <param name="item"></param>
 /// <param name="index"></param>
-void List_Insert(List* list, void* item, int index);
+void List_Insert(List* list, void* item, unsigned int index);
 
 /// <summary>
 /// Removes an item at the specified index in the list. Index must be in the range [0, length) or behaviour is undefined.
 /// </summary>
 /// <param name="list"></param>
 /// <param name="index"></param>
-void* List_Remove(List* list, int index);
+void* List_Remove(List* list, unsigned int index);
 
 /// <summary>
 /// (RemoveC - RemoveCopy) Removes an item if in the list. Does not do anything if item is NULL. Returns NULL if no matches are found.

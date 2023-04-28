@@ -7,7 +7,7 @@
 #include "APS_Logic.h"
 #include "APS_round-basal.h"
 #include "APS_basal-set-temp.h"
-
+#include "APS_Temperature.h"
 int test_round_basal() {
 	int passed = 0;
 	int numtests = 0;
@@ -181,6 +181,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 1:\tshould cancel high temp when in range w/o IOB (%.6lf should be 0.9 and %.6lf should be 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 
 	/*	Test 2 - low glucose suspend test cases */
@@ -201,6 +202,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 2:\tshould temp to 0 when low w/o IOB (%.6lf should be 0 and %.6lf should be above 29): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 
 	/*	Test 3 - less than 10m elapsed */
@@ -225,6 +227,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 3:\tshould not extend temp to 0 when <10m elapsed (%.6lf and %.6lf should both be NAN): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 
 	/*	Test 4 - should do nothing when low and rising w/o IOB */
@@ -245,6 +248,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 4:\tshould do nothing when low and rising w/o IOB (%.6lf should be 0.9 and %.6lf should be 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 5 - should temp to zero when rising slower than BGI */
 	{
@@ -268,6 +272,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 5:\tshould temp to zero when rising slower than BGI (%.6lf should be 0 and %.6lf should be 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 6 - should temp to 0 when low and falling, regardless of BGI */
 	{
@@ -291,6 +296,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 6:\tshould temp to 0 when low and falling, regardless of BGI (%.6lf should be 0 and %.6lf should be >= 29): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 7 - should high-temp when > 80-ish and rising w/ lots of negative IOB */
 	{
@@ -314,6 +320,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 7:\tshould high-temp when > 80-ish and rising w/ lots of negative IOB (%.6lf should be > 1 and %.6lf should be 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 8 - should high-temp when > 180-ish and rising but not more then maxSafeBasal */
 	{
@@ -335,6 +342,7 @@ int test_determine_basal() {
 		}
 		else
 			printf("\n\nTest 8:\tshould high-temp when > 180-ish and rising but not more then maxSafeBasal : FAILURE\n");
+		Destroy_Temp(&output);
 	}
 	/*	Test 9 - should reduce high-temp when schedule would be above max */
 	{
@@ -362,6 +370,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 9:\tsshould reduce high-temp when schedule would be above max (%.6lf should be 30): FAILURE\n",
 				output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 10	should continue high-temp when required ~= temp running*/
 	{
@@ -389,6 +398,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 10:\tshould continue high-temp when required ~= temp running (%.6lf and %.6lf should both be NAN): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 11	should set high-temp when required running temp is low */
 	{
@@ -416,6 +426,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 11:\tshould set high-temp when required running temp is low (%.6lf = 30): FAILURE\n",
 				output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 12	should stop high-temp when iob is near max_iob. */
 	{
@@ -439,6 +450,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 12:\tshould stop high-temp when iob is near max_iob. (%.6lf = .9 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 13	should temp to 0 when LOW w/ positive IOB */
 	{
@@ -462,6 +474,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 13:\tshould temp to 0 when LOW w/ positive IOB (%.6lf = 0 and %.6lf > 29): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 14	should low temp when LOW w/ negative IOB */
 	{
@@ -485,6 +498,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 14:\tshould low temp when LOW w/ negative IOB (%.6lf < 0.8 and %.6lf > 29): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 15	should low-temp when eventualBG < min_bg */
 	{
@@ -504,6 +518,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 15:\tshould low-temp when eventualBG < min_bg (%.6lf < 0.8 and %.6lf > 29): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 16	should low-temp when eventualBG < min_bg with delta > exp. delta */
 	{
@@ -527,6 +542,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 16:\tshould low-temp when eventualBG < min_bg with delta > exp. delta (%.6lf < 0.2 and %.6lf > 29): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 17	should low-temp when eventualBG < min_bg with delta > exp. delta */
 	{
@@ -550,6 +566,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 17:\tshould low-temp when eventualBG < min_bg with delta > exp. delta (%.6lf < 0.8 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 18	should low-temp much less when eventualBG < min_bg with delta barely negative */
 	{
@@ -573,6 +590,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 18:\tshould low-temp much less when eventualBG < min_bg with delta barely negative (0.3 < %.6lf < 0.8 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 19	should cancel low-temp when lowish and avg.delta rising faster than BGI */
 	{
@@ -600,6 +618,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 19:\tshould cancel low-temp when lowish and avg.delta rising faster than BGI (%.6lf > 0.8 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 20	should set current basal as temp when lowish and delta rising faster than BGI */
 	{
@@ -627,6 +646,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 20:\tshould set current basal as temp when lowish and delta rising faster than BGI (%.6lf = 0.9 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 21	should low-temp when low and rising slower than BGI */
 	{
@@ -650,6 +670,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 21:\tshould low-temp when low and rising slower than BGI (%.6lf < 0.8 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 22	should high-temp when eventualBG > max_bg */
 	{
@@ -669,6 +690,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 22:\tshould high-temp when eventualBG > max_bg (%.6lf > 1 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 23	should cancel high-temp when high and avg. delta falling faster than BGI */
 	{
@@ -696,6 +718,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 23:\tshould cancel high-temp when high and avg. delta falling faster than BGI (%.6lf = 0.9 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 24	should cancel high-temp when high and delta falling faster than BGI */
 	{
@@ -723,6 +746,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 24:\tshould cancel high-temp when high and delta falling faster than BGI (%.6lf = 0.9 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 25	should do nothing when no temp and high and delta falling faster than BGI */
 	{
@@ -750,6 +774,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 25:\tshould do nothing when no temp and high and delta falling faster than BGI (%.6lf = 0.9 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 26	should high-temp when high and falling slower than BGI */
 	{
@@ -773,6 +798,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 26:\tshould high-temp when high and falling slower than BGI (%.6lf > 1 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 27	should high-temp when high and falling slowly with low insulin activity */
 	{
@@ -796,6 +822,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 27:\tshould high-temp when high and falling slowly with low insulin activity (%.6lf > 2.5 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 28	should profile.current_basal be undefined return error */
 	{
@@ -811,6 +838,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 28:\tshould profile.current_basal be undefined return error (%s) should be \"Error: could not get current basal rate\": FAILURE\n",
 				output.error);
+		Destroy_Temp(&output);
 	}
 	/*	Test 29	should let low-temp run when bg < 30 (Dexcom is in ???) */
 	{
@@ -831,6 +859,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 29:\tshould let low-temp run when bg < 30 (Dexcom is in ???) (%.6lf = NAN): FAILURE\n",
 				output.rate);
+		Destroy_Temp(&output);
 	}
 	/*	Test 30	should cancel high-temp when bg < 30 (Dexcom is in ???) */
 	{
@@ -851,6 +880,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 30:\tshould cancel high-temp when bg < 30 (Dexcom is in ???) (%.6lf < 1): FAILURE\n",
 				output.rate);
+		Destroy_Temp(&output);
 	}
 	/*	Test 31	profile should contain min_bg,max_bg */
 	{
@@ -870,6 +900,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 31:\tprofile should contain min_bg,max_bg (%s) should be \"Error: could not determine target_bg. \": FAILURE\n",
 				output.error);
+		Destroy_Temp(&output);
 	}
 	/*	Test 32	iob_data should not be undefined */
 	{
@@ -891,6 +922,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 32:\tiob_data should not be undefined (%s) should be \"Error: iob_data undefined. \": FAILURE\n",
 				output.error);
+		Destroy_Temp(&output);
 	}
 	/*	Test 33	should do nothing when requested temp already running with >15m left */
 	{
@@ -936,6 +968,8 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 33:\tshould do nothing when requested temp already running with >15m left (%.6lf = NAN and %.6lf = NAN): FAILURE\n",
 				output.rate, output.duration);
+		printf("Reason: %s\n", output.reason);
+		Destroy_Temp(&output);
 	}
 	/*	Test 34	should temp to zero with double sensitivity adjustment */
 	{
@@ -958,6 +992,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 34:\tshould temp to zero with double sensitivity adjustment (%.6lf = 0 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 	}
 	/*	Test 35	maxSafeBasal current_basal_safety_multiplier of 1 should cause the current rate to be set, even if higher is needed */
 	{
@@ -986,6 +1021,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 35:\tmaxSafeBasal current_basal_safety_multiplier of 1 should cause the current rate to be set, even if higher is needed (%.6lf = 0.9): FAILURE\n",
 				output.rate);
+		Destroy_Temp(&output);
 	}
 	/*	Test 36	maxSafeBasal max_daily_safety_multiplier of 1 should cause the max daily rate to be set, even if higher is needed */
 	{
@@ -1014,6 +1050,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 36:\tmaxSafeBasal current_basal_safety_multiplier of 1 should cause the current rate to be set, even if higher is needed (%.6lf = 1.3): FAILURE\n",
 				output.rate);
+		Destroy_Temp(&output);
 		printf("Reason: %s\n", output.reason);
 	}
 	/*	Test 37	overriding maxSafeBasal multipliers to 10 should increase temp */
@@ -1044,6 +1081,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 37:\toverriding maxSafeBasal multipliers to 10 should increase temp (%.6lf = 1.3): FAILURE\n",
 				output.rate);
+		Destroy_Temp(&output);
 		printf("Reason: %s\n", output.reason);
 	}
 	/*	Test 38	should round appropriately for small basals when setting basal to maxSafeBasal  */
@@ -1079,6 +1117,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 38:\tshould round appropriately for small basals when setting basal to maxSafeBasal  (%.6lf = 0.05 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 		printf("Reason: %s\n", output.reason);
 	}
 	/*	Test 39	should match the basal rate precision available on a 523  */
@@ -1103,6 +1142,7 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 39:\tshould match the basal rate precision available on a 523 (%.6lf = 0.825 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 		printf("Reason: %s\n", output.reason);
 	}
 	/*	Test 40	should match the basal rate precision available on a 522  */
@@ -1127,21 +1167,38 @@ int test_determine_basal() {
 		else
 			printf("\n\nTest 40:\tshould match the basal rate precision available on a 522 (%.6lf = 0.9 and %.6lf = 30): FAILURE\n",
 				output.rate, output.duration);
+		Destroy_Temp(&output);
 		printf("Reason: %s\n", output.reason);
 	}
+
+	/*	Free variables	*/
+	free(meal_data.allDeviations);
+
 	printf("\n--------------------------------\nSummary for Determine Basal: %d/%d tests passed\n", testsPassed, testsCount);
 	return testsPassed == testsCount;
 }
 int startTest() {
 	InitAPS();
+
 	int round_basal_test = test_round_basal();
+
 	int determine_basal_test = test_determine_basal();
+
+
 	printf("\n--------------------------------\nSummary for all tests:\n");
-	
 	printf("Round Basal: %s\n", round_basal_test ? "PASSED" : "FAILED");
 	printf("Determine Basal: %s\n", determine_basal_test ? "PASSED" : "FAILED");
-	return round_basal_test && determine_basal_test;
 }
+
+/*
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+*/
 int main() {
-	return !startTest();	//	for github workflow, return result is 0 for passing.
+	/*
+	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
+	_CrtDumpMemoryLeaks();
+	*/
+	return !startTest();
 }

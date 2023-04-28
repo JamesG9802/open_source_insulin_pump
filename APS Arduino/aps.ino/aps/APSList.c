@@ -6,7 +6,7 @@
 void ModList_Resize(List* list, unsigned long newLength)
 {
 	void** newBlock = malloc(sizeof(void*) * newLength);
-	for (int i = 0; i < list->length; i++)
+	for (unsigned int i = 0; i < list->length; i++)
 		newBlock[i] = list->elements[i];
 	list->elements = newBlock;
 	list->capacity = newLength;
@@ -30,9 +30,9 @@ void List_Append(List* list, void* item)
 	list->elements[list->length] = item;
 	list->length++;
 }
-void List_Insert(List* list, void* item, int index)
+void List_Insert(List* list, void* item, unsigned int index)
 {
-	int i;
+	unsigned int i;
 	//	If the list is at full capacity, double the size of the list
 	if (list->length >= list->capacity)
 		ModList_Resize(list, list->capacity * 2);
@@ -44,9 +44,9 @@ void List_Insert(List* list, void* item, int index)
 	list->elements[index] = item;
 	list->length++;
 }
-void* List_Remove(List* list, int index)
+void* List_Remove(List* list, unsigned int index)
 {
-	int i;
+	unsigned int i;
 	void* item = NULL;
 	if (index < 0 || index >= list->length)
 		return item;
@@ -58,7 +58,7 @@ void* List_Remove(List* list, int index)
 }
 void* List_RemoveC(List* list, void* item)
 {
-	int i;
+	unsigned int i;
 	void* listItem = NULL;
 	if (item == NULL)
 		return NULL;
