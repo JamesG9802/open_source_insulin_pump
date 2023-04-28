@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: APS_Build_and_Test
+name: Hardware_Build_and_Test
 
 on:
   push:
