@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">InsulinApp</string>
+    <string name="response">Waiting</string>
+</resources>
