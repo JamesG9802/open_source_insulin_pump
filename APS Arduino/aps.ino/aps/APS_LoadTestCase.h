@@ -8,6 +8,13 @@
 
 
 void TestCase0(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp* currenttemp) {
+	glucose_status->delta = 0;
+	glucose_status->glucose = 115;
+	glucose_status->long_avgdelta = 1.1;
+	glucose_status->short_avgdelta = 0;
+	iob_data->iob = 0;
+	iob_data->activity = 0;
+	iob_data->bolussnooze = 0;
 	currenttemp->duration = 30;
 	currenttemp->rate = 1.5;
 }
@@ -16,11 +23,18 @@ void TestCase1(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp* current
 	glucose_status->glucose = 75;
 	glucose_status->long_avgdelta = -5;
 	glucose_status->short_avgdelta = -5;
+	iob_data->iob = 0;
+	iob_data->activity = 0;
+	iob_data->bolussnooze = 0;
+	currenttemp->duration = 30;
+	currenttemp->rate = 1.5;
 }
 void TestCase2(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp* currenttemp) {
 	currenttemp->duration = 57;
 	currenttemp->rate = 0;
-
+		iob_data->iob = 0;
+	iob_data->activity = 0;
+	iob_data->bolussnooze = 0;
 	glucose_status->delta = -5;
 	glucose_status->glucose = 75;
 	glucose_status->long_avgdelta = -5;
@@ -29,17 +43,24 @@ void TestCase2(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp* current
 void TestCase3(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp* currenttemp) {
 	currenttemp->duration = 57;
 	currenttemp->rate = 0;
+		iob_data->iob = 0;
+	iob_data->activity = 0;
+	iob_data->bolussnooze = 0;
 	glucose_status->delta = 6;
 	glucose_status->glucose = 75;
 	glucose_status->long_avgdelta = 6;
 	glucose_status->short_avgdelta = 6;
 }
 void TestCase4(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp* currenttemp) {
-
+		iob_data->iob = 0;
+	iob_data->activity = 0;
+	iob_data->bolussnooze = 0;
 	glucose_status->delta = 6;
 	glucose_status->glucose = 75;
 	glucose_status->long_avgdelta = 6;
 	glucose_status->short_avgdelta = 6;
+		currenttemp->duration = 30;
+	currenttemp->rate = 1.5;
 }
 void TestCase5(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp* currenttemp) {
 
@@ -50,9 +71,12 @@ void TestCase5(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp* current
 	iob_data->iob = -.05;
 	iob_data->activity = -.01;
 	iob_data->bolussnooze = 0;
+	currenttemp->duration = 30;
+	currenttemp->rate = 1.5;
 }
 void TestCase6(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp* currenttemp) {
-
+	currenttemp->duration = 30;
+	currenttemp->rate = 1.5;
 	glucose_status->delta = -1;
 	glucose_status->glucose = 75;
 	glucose_status->long_avgdelta = -1;
@@ -62,7 +86,8 @@ void TestCase6(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp* current
 	iob_data->bolussnooze = 0.5;
 }
 void TestCase7(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp* currenttemp) {
-
+	currenttemp->duration = 30;
+	currenttemp->rate = 1.5;
 	glucose_status->delta = 5;
 	glucose_status->glucose = 85;
 	glucose_status->long_avgdelta = 5;
@@ -72,7 +97,8 @@ void TestCase7(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp* current
 	iob_data->bolussnooze = 0;
 }
 void TestCase8(Glucose_Status* glucose_status, IOB_Data* iob_data, Temp* currenttemp) {
-
+	currenttemp->duration = 30;
+	currenttemp->rate = 1.5;
 	glucose_status->delta = 5;
 	glucose_status->glucose = 185;
 	glucose_status->long_avgdelta = 5;
