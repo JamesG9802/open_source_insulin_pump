@@ -194,7 +194,7 @@ void SendCommandToPump(Temp temp, Profile userProfile) {
 void InitCGM()  {
    Serial.begin(9600);
 }
-Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp currenttemp) {
+Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp* currenttemp) {
   /* Example test case #26: should high-temp when high and falling slower than BGI 
     Expected output of rate > 1 && duration > 30
   */
@@ -205,7 +205,7 @@ Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp currenttemp) {
   id->iob = 1;
   id->activity = 0.01;
   id->bolussnooze = 0;
-  return determine_basal(*gs, currenttemp, id, *profile, *autosens, *meal_data, APS_tempBasalFunctions, 1);
+  return determine_basal(*gs, *currenttemp, id, *profile, *autosens, *meal_data, APS_tempBasalFunctions, 1);
 }
 void setup() {
   InitInsulinPump();
@@ -213,7 +213,8 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 }
 void loop() {
-  Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, *currenttemp);
+  Serial.println("Starting Read from CGM.");
+  Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, currenttemp);
   
   /*  Clean up Temp so that it doesn't cause a memory leak  */
   Destroy_Temp(currenttemp);
@@ -223,8 +224,8 @@ void loop() {
   
   /*  Delivering message to pump  */
   SendCommandToPump(*currenttemp, *profile);
-
-  //  delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
+  Serial.println("Finished with current diagnosis. Waiting for 5 minutes.");
+  delay(INSULIN_INTERVAL); //  1000 (ms/s) * 60 (s/min) * 5 = 5 
   
   /*  Reduce currenttemp's duration by 5 minutes due to time passage  */
   if(currenttemp->duration)
@@ -233,10 +234,5 @@ void loop() {
   /*  Set currenttemp's duration to 0 if negative */
   if(!isnan(currenttemp->duration) && currenttemp->duration < 0)
     currenttemp->duration = 0;
-  Serial.println("\nLOOP:     ");
-  digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
-  delay(1000);                      // wait for a second
-  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
-  delay(1000);   
 }
 
