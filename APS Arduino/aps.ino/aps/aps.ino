@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdio.h>
 
+#include <ArduinoBLE.h>
+
 #include "APS_Logic.h"
 #include "APS_Glucose_Status.h"
 #include "APS_Temperature.h"
@@ -22,6 +24,11 @@
 #define APS_BUTTON3  18 //  send command to deliver dosage
 
 #define INSULIN_INTERVAL  (1000 * 60 * 5) //  amount of time for how long it takes to recalculate required basal: default 5 min.
+
+// BLE settings
+BLEService CGMData("180A");
+BLEByteCharacteristic switchCharacteristic("2A57", BLERead | BLEWrite);
+
 //  CGM varaibles
 Glucose_Status* glucose_status;
 IOB_Data* iob_data;
@@ -211,8 +218,40 @@ void setup() {
   InitInsulinPump();
   InitCGM();
   pinMode(LED_BUILTIN, OUTPUT);
+
+  if (!BLE.begin()) {
+    Serial.println("starting BLE failed.");
+
+    while(1);
+  }
+
+  BLE.setLocalName("Arduino openAPS");
+  BLE.setAdvertsisedService(CGMData);
+
+  CGMData.addCharacteristic(switchCharacteristic);
+
+  BLE.addService(CGMData);
+
+  switchCharacteristic.writeValue(0);
+
+  BLE.advertise();
+
+
 }
 void loop() {
+
+  BLEDevice central = BLE.central();
+
+  if (central) {
+    Serial.print("Connected to central: ");
+    Serial.println(central.address());
+
+    while (central.connected()) {
+      if (switchCharacteristic.written()){
+        if (switchCh)
+      }
+    }
+  }
   Temp newTemp = ReadDataFromCGM(glucose_status, iob_data, *currenttemp);
   
   /*  Clean up Temp so that it doesn't cause a memory leak  */
