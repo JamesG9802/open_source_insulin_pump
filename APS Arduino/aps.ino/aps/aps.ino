@@ -205,7 +205,7 @@ void InitCGM()  {
    Serial.begin(9600);
 }
 
-Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp currenttemp) {
+Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp temp) {
   /* Example test case #26: should high-temp when high and falling slower than BGI 
     Expected output of rate > 1 && duration > 30
   */
@@ -216,7 +216,7 @@ Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp currenttemp) {
   id->iob = 1;
   id->activity = 0.01;
   id->bolussnooze = 0;
-  return determine_basal(*gs, currenttemp, id, *profile, *autosens, *meal_data, APS_tempBasalFunctions, 1);
+  return determine_basal(*gs, temp, id, *profile, *autosens, *meal_data, APS_tempBasalFunctions, 1);
 }
 
 void setup() {
