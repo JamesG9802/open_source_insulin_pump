@@ -22,7 +22,7 @@
         android:layout_height="58dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="104dp"
-        android:text="TextView"
+        android:text="Carbs"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,10 +32,72 @@
         android:layout_width="138dp"
         android:layout_height="58dp"
         android:layout_marginStart="56dp"
-        android:text="TextView"
+        android:text="Meal CoB"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal16"
+        android:layout_width="143dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="28dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal4"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal11"
+        android:layout_width="143dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal4"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal12"
+        android:layout_width="143dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="48dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal11"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal14"
+        android:layout_width="143dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="4dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal11"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal4"
+        android:layout_width="143dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="28dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="188dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        app:layout_constraintBottom_toTopOf="@+id/button_second"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:layout_editor_absoluteX="172dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
