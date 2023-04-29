@@ -216,7 +216,7 @@ Temp ReadDataFromCGM(Glucose_Status* gs, IOB_Data* id, Temp temp) {
   id->iob = 1;
   id->activity = 0.01;
   id->bolussnooze = 0;
-  return determine_basal(*gs, temp, id, *profile, *autosens, *meal_data, APS_tempBasalFunctions, 1);
+  return determine_basal(*gs, temp, *id, *profile, *autosens, *meal_data, APS_tempBasalFunctions, 1);
 }
 
 void setup() {
